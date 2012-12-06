@@ -9,23 +9,27 @@ public class CellReference extends Expression {
 		   sheet = s;
 		   pos = p;
 	}
-
+	
+	@Override
 	public  boolean toBoolean() {
 		if (sheet.get(pos) != null)
 		  return sheet.get(pos).toBoolean();
-		else return false;
+		else 
+			return false;
 	}
-	
+	@Override
 	public int toInt() {
 		if (sheet.get(pos) != null)
-		return sheet.get(pos).toInt();
-		else return 0;
+			return sheet.get(pos).toInt();
+		else 
+			return 0;
 	}
-	
+	@Override
 	public String toString() {
 		if (sheet.get(pos) != null)
 			return sheet.get(pos).toString();
-		else return "";
+		else 
+			return "fail";
 	}
 
 }
