@@ -17,10 +17,7 @@ public abstract class Arithmetic extends Expression  {
 	
 	@Override	
 	public String toString() {
-				if (this.evaluate() == 0) 
-					return "";
-				else 
-					return "true";		
+			return "" + this.evaluate();		
 	}
 
 }

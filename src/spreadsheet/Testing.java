@@ -1,23 +1,29 @@
 package spreadsheet;
 
-import spreadsheet.*;
-import spreadsheet.textual.*;
+import spreadsheet.arithmetic.AConst;
+import spreadsheet.arithmetic.Add;
+import spreadsheet.arithmetic.Neg;
 import spreadsheet.logical.*;
-import spreadsheet.arithmetic.*;
+import spreadsheet.textual.*;
 
 public class Testing {
 	
   public static void main(String[] args) {
-    final Spreadsheet spreadsheet = new Spreadsheet();
-    Expression e1 =  new TConst("korrekt");
-    Position p1 = new Position(1,1);
-    Position p2 = new Position(1,2);
+	     Spreadsheet spreadsheet = new Spreadsheet();
+	     // Create an expression for the first cell
+	     Expression e1 =
+	       new Conjunct(new LConst(true), new TConst(""));
+	     Expression e2 =
+	       new Disjunct(new LConst(false), new TConst("true"));
+	     Expression efoo = new Add(e1, e2);
+	     // Create an expression for the second cell
+	     Expression e4 = new AConst(41);
+	     Expression ebar = new Add(e4, efoo);
+	     spreadsheet.set(new Position(1, 1), ebar);
 
-    spreadsheet.set(p1, e1);
-    Expression result = spreadsheet.get(p1);
-    // Create an expression for the first cell
-    Expression ebaz = new Concat(e1, e1);
-    Expression e6 = new CellReference(spreadsheet,p1);
-    System.out.println(e6.toString());
+	     Expression e3 = new CellReference(spreadsheet, new Position(1, 1));
+
+    System.out.println(e3.toInt());
+
   }
 }

@@ -5,8 +5,8 @@ import spreadsheet.logical.*;
 import spreadsheet.textual.*;
 
 
-
 public class DemoProgram {
+	
   public static void main(String[] args) {
     final Spreadsheet spreadsheet = new Spreadsheet();
     // Create an expression for the first cell
