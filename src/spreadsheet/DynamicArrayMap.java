@@ -41,9 +41,8 @@ public class DynamicArrayMap {
 	 * @return the Expression associated with the key
 	 */
 	public Expression lookup(final Position key) {
-		
 		for (int i = 0; i < index; i++) {
-			  if (array[i].getKey() == key) {
+			  if (array[i].getKey().isEqualTo(key)) {
 				  return array[i].getValue();
 			  }
 		}
