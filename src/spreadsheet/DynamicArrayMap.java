@@ -1,7 +1,11 @@
 package spreadsheet;
 
 import java.util.Arrays;
-
+/**
+ * @deprecated
+ * Spreadsheet uses ArrayList instead.
+ *
+ */
 public class DynamicArrayMap {
 	
 	// array stores the Nodes in an Array

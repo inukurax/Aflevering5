@@ -3,7 +3,6 @@ package spreadsheet;
 import java.util.ArrayList;
 
 /**
- * 
  * @version 2.0
  * Changed to use ArrayList
  */

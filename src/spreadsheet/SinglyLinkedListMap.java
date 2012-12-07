@@ -1,5 +1,10 @@
 package spreadsheet;
 
+/**
+ * @deprecated
+ * Spreadsheet uses ArrayList instead
+ *
+ */
 public class SinglyLinkedListMap {
 	
 	private LinkedList current;

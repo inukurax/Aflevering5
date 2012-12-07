@@ -4,7 +4,6 @@ import spreadsheet.arithmetic.*;
 import spreadsheet.logical.*;
 import spreadsheet.textual.*;
 
-
 public class DemoProgram {
 	
   public static void main(String[] args) {
