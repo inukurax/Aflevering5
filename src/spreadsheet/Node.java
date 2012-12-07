@@ -1,6 +1,6 @@
 package spreadsheet;
 
-public class Node {
+public final class Node {
 	
 	private Position position;
 	private Expression expression;

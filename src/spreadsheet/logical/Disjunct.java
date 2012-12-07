@@ -2,7 +2,7 @@ package spreadsheet.logical;
 
 import spreadsheet.Expression;
 
-public class Disjunct extends Logical{
+public final class Disjunct extends Logical{
 	
 	private boolean value;
 	

@@ -1,6 +1,6 @@
 package spreadsheet;
 
-public class Position {
+public final class Position {
     private int column;
     private int row;
 

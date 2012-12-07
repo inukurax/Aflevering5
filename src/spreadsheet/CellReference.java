@@ -1,6 +1,6 @@
 package spreadsheet;
 
-public class CellReference extends Expression {
+public final class CellReference extends Expression {
 	
 	private Spreadsheet sheet;
 	private Position pos;

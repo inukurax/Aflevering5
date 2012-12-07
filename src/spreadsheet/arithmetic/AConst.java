@@ -1,6 +1,6 @@
 package spreadsheet.arithmetic;
 
-public class AConst extends Arithmetic {
+public final class AConst extends Arithmetic {
 
 	private int aConst;
 	

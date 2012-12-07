@@ -1,6 +1,6 @@
 package spreadsheet.logical;
 
-public class LConst extends Logical{
+public final class LConst extends Logical{
 	
 	private boolean lConst;
 	

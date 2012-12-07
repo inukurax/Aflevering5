@@ -2,7 +2,7 @@ package spreadsheet.arithmetic;
 
 import spreadsheet.Expression;
 
-public class Add extends Arithmetic {
+public final class Add extends Arithmetic {
 
 	private int value;
 
