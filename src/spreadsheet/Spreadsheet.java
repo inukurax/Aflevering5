@@ -1,14 +1,22 @@
 package spreadsheet;
 
+import java.util.ArrayList;
+
+/**
+ * 
+ * @version 2.0
+ * Changed to use ArrayList
+ */
 public class Spreadsheet {
 	
-	private DynamicArrayMap list;
+
+	private ArrayList<Node> list;
 	
 	/**
-	 * Construct a spreadsheet from DynamicArrayMap
+	 * Construct a spreadsheet of Nodes in an ArrayList
 	 */
 	public Spreadsheet() {
-		list  = new DynamicArrayMap();
+		list  = new ArrayList<Node>();
 	}
 		
 	/**
@@ -17,14 +25,18 @@ public class Spreadsheet {
 	 * @param expression is a non null  Expression
 	 */
 	public void set(final Position position, final Expression expression) {
-		list.insert(position, expression); 
+		list.add(new Node (position, expression)); 
 	}
 	/**
 	 * @param position is a non null Position
 	 * @return associated Expression to the position
 	 */
 	public Expression get(final Position position) {
-		return list.lookup(position);
+		for (Node node : list) {
+			if (node.getKey().isEqualTo(position)) 
+				return node.getValue();
+		}
+		return null;
 	}
 	
 }
