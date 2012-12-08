@@ -1,8 +1,6 @@
 package spreadsheet;
 
-import spreadsheet.arithmetic.AConst;
-import spreadsheet.arithmetic.Add;
-import spreadsheet.arithmetic.Neg;
+import spreadsheet.arithmetic.*;
 import spreadsheet.logical.*;
 import spreadsheet.textual.*;
 
