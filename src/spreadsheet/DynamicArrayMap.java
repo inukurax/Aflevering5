@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Spreadsheet uses ArrayList instead.
  *
  */
+@Deprecated
 public class DynamicArrayMap {
 	
 	// array stores the Nodes in an Array

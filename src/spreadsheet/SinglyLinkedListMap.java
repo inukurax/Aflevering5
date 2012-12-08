@@ -5,6 +5,7 @@ package spreadsheet;
  * Spreadsheet uses ArrayList instead
  *
  */
+@Deprecated
 public class SinglyLinkedListMap {
 	
 	private LinkedList current;
@@ -17,7 +18,7 @@ public class SinglyLinkedListMap {
 		
 		// node is the Node
 		private Node node;
-		// rest is the list of Node 
+		// rest is the list of Nodes
 		private LinkedList rest;
 		
 		/**
