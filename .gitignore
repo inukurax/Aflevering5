@@ -1,4 +1,9 @@
+# Folders #
+doc
 bin
+lib
+
+# Files #
 *.class
 
 # Package Files #
