@@ -19,6 +19,7 @@ public class Testing {
 	     Expression ebar = new Add(e4, efoo);
 	     spreadsheet.set(new Position(1, 1), ebar);
 
+
 	     Expression e3 = new CellReference(spreadsheet, new Position(1, 1));
 
     System.out.println(e3.toInt());

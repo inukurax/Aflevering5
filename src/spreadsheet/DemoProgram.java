@@ -30,5 +30,11 @@ public class DemoProgram {
     // Extract values from the spreadsheet
     String result = spreadsheet.get(new Position(4, 4)).toString();
     System.out.println(result);
+    Expression et = new TConst("Tjek om den overskriver");
+    spreadsheet.set(new Position(4, 4), et);
+    String result2 = spreadsheet.get(new Position(4, 4)).toString();
+    System.out.println(result2 + " = " + (result2 == et.toString()));
+
+
   }
 }
