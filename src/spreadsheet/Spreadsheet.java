@@ -69,7 +69,14 @@ public class Spreadsheet {
 	 * @param position is a non null Position
 	 * @param expression is a non null  Expression
 	 */
-
+	public void set(final Position position, final Expression expression) {
+		int index = listContains(position);
+		if (index != -1)
+			list.set(index, new Node(position, expression));
+		else
+			list.add(new Node (position, expression)); 
+			
+	}
 	/**
 	 * @param position is a non null Position
 	 * @return associated Expression to the position
