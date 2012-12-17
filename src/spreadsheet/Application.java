@@ -79,7 +79,7 @@ public final class Application {
 	 * lists the currently active spreadsheets;
 	 * @return
 	 */
-	Iterable<String> listSpreadsheets() {
+	public Iterable<String> listSpreadsheets() {
 		return (Iterable<String>) spreadsheets.listIterator();
 		
 	}
