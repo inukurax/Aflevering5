@@ -10,13 +10,45 @@ public class Spreadsheet {
 	
 
 	private ArrayList<Node> list;
+	private String name = "";
+	private int count = 0;
+	private int hash;
 	
 	/**
 	 * Construct a spreadsheet of Nodes in an ArrayList
 	 */
 	public Spreadsheet() {
 		list  = new ArrayList<Node>();
+		name = "Sheet" + count;
+		hash = count;
+		count++;
 	}
+	
+	/**
+	 * Accesor method for getting name
+	 * @return String of name<count>
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * Checks for equality by name instead.
+	 */
+	public boolean equals(Spreadsheet sheet) {
+		if (sheet == null)
+			return false;
+		return this.getName().equals(sheet.getName());
+	}
+	
+	/**
+	 * Uniq
+	 */
+	public int hashCode() {
+		return hash;
+	}
+	
+	
 	
 	/**
 	 * private method for checking for duplication
