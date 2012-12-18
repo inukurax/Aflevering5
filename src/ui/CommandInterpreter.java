@@ -36,8 +36,15 @@ public final class CommandInterpreter {
     case "ls"  : return new ListSpreadsheetsCommand();
     case "cws" : if (scanner.hasNext())
 				    return new ChangeWorksheetCommand(scanner.next());
-				 else
-				    return new ChangeWorksheetCommand("");
+    			 return new ChangeWorksheetCommand("");
+    case "get" : if (scanner.hasNextInt() ) {
+				    int argInt1 = scanner.nextInt();
+					if  (scanner.hasNextInt()) {
+					    int argInt2 = scanner.nextInt();
+					    return new GetCommand(argInt1, argInt2);
+					}
+				  }
+    			 return new FailedCommand("get need 2 arguments of type int.");
     case "exit": return new ExitCommand();
     }
     

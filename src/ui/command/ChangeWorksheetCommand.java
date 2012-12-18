@@ -15,9 +15,7 @@ public class ChangeWorksheetCommand extends Command {
 	public void execute() {
 		try {
 			Application.instance.changeWorksheet(name);
-		
 		} catch (NoSuchSpreadsheetException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.toString());
 		}
 	}
