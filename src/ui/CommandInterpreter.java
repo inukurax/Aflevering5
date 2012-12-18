@@ -45,7 +45,14 @@ public final class CommandInterpreter {
 					}
 				  }
     			 return new FailedCommand("get need 2 arguments of type int.");
-    case "exit": return new ExitCommand();
+    			 
+    case "save" : if (scanner.hasNext()) {
+    			  	String filename = scanner.next();
+    			  	if (filename.contains(".ark"))
+    			  		return new SaveCommand(filename);
+    			  }
+    			  return new FailedCommand("need argument of filename.ark");
+    case "exit" : return new ExitCommand();
     }
     
     return new FailedCommand(
