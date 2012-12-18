@@ -14,11 +14,8 @@ public class SaveCommand extends Command {
 		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
-	 * @see ui.command.Command#execute()
-	 */
 	@Override
-	public void execute() throws NoSuchSpreadsheetException {
+	public void execute() {
 		// TODO Auto-generated method stub
 
 	}
