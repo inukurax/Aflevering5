@@ -8,10 +8,9 @@ import java.util.ArrayList;
  */
 public class Spreadsheet {
 	
-
 	private ArrayList<Node> list;
-	private String name = "";
-	private int count = 0;
+	private String name;
+	private static int count;
 	private int hash;
 	
 	/**

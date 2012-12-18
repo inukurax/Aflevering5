@@ -54,7 +54,6 @@ public final class Application {
 			}
 		}
 		throw new NoSuchSpreadsheetException(name);
-		
 	}
 	
 	/**
@@ -80,7 +79,12 @@ public final class Application {
 	 * @return
 	 */
 	public Iterable<String> listSpreadsheets() {
-		return (Iterable<String>) spreadsheets.listIterator();
+		ArrayList<String> list;
+		list = new ArrayList<String>();
+		for (Spreadsheet sheet : spreadsheets) {
+			list.add(sheet.getName());
+		}
+		 return (Iterable<String>) list;
 		
 	}
 	/**
@@ -88,6 +92,15 @@ public final class Application {
 	 */
 	public void exit() {
 		System.exit(0);
+	}
+	
+	/**
+	 * Gets the last made spreadsheet
+	 * @return
+	 */
+	public Spreadsheet getLast() {
+		int index = spreadsheets.size() - 1;
+		return spreadsheets.get(index);
 	}
 
 }

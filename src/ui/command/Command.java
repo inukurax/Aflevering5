@@ -1,7 +1,9 @@
 package ui.command;
 
+import spreadsheet.NoSuchSpreadsheetException;
+
 public abstract class Command {
 
-  public abstract void execute();
+  public abstract void execute() throws NoSuchSpreadsheetException;
 
 }

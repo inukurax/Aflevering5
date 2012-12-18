@@ -1,4 +1,5 @@
 
+import spreadsheet.NoSuchSpreadsheetException;
 import ui.command.*;
 import java.io.PrintStream;
 import java.io.InputStream;
@@ -20,8 +21,9 @@ final class Interpreter {
    * Writes ">" to console when ready for input
    * checks for empty input
    * loops until exit command
+ * @throws NoSuchSpreadsheetException 
    */
-  public void prompt() {
+  public void prompt() throws NoSuchSpreadsheetException {
     String command = null;
     while(true) {
       System.out.print("> ");
@@ -33,7 +35,7 @@ final class Interpreter {
     
   }
 
-  public static void main(String[] _) {
+  public static void main(String[] _) throws NoSuchSpreadsheetException {
 		  new Interpreter().prompt();
   }
 
