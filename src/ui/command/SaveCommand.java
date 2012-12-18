@@ -7,10 +7,11 @@ import java.util.ArrayList;
 
 import spreadsheet.NoSuchSpreadsheetException;
 import ui.ErrorStream;
+import ui.SaveFile;
 
 public class SaveCommand extends Command {
 	
-	public static ArrayList<String> saveFile; // this or a class? or arraylist
+	// stores what needs to be saved.
 	private BufferedWriter output;
 	private String filename;
 	/**
@@ -23,6 +24,8 @@ public class SaveCommand extends Command {
 
 	@Override
 	public void execute() {
+		ArrayList<String> saveFile;
+		saveFile = SaveFile.saveFile;
 		try {
 			if (saveFile != null && !saveFile.isEmpty()) {
 			

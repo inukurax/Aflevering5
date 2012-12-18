@@ -2,6 +2,7 @@ package ui.command;
 
 import spreadsheet.Application;
 import spreadsheet.NoSuchSpreadsheetException;
+import ui.SaveFile;
 
 public class ChangeWorksheetCommand extends Command {
 
@@ -15,6 +16,7 @@ public class ChangeWorksheetCommand extends Command {
 	public void execute() {
 		try {
 			Application.instance.changeWorksheet(name);
+			SaveFile.saveFile.add("cws" + name);
 		} catch (NoSuchSpreadsheetException e) {
 			System.out.println(e.toString());
 		}

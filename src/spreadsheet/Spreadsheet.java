@@ -19,8 +19,8 @@ public class Spreadsheet {
 	public Spreadsheet() {
 		list  = new ArrayList<Node>();
 		name = "Sheet" + count;
-		hash = count;
 		count++;
+		hash = count;
 	}
 	
 	/**

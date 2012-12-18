@@ -10,6 +10,8 @@ public final class Application {
 
   private ArrayList<Spreadsheet> spreadsheets;
   private Spreadsheet worksheet;
+  private ArrayList<String> list;
+
 
   public static final Application instance = new Application();
 
@@ -17,6 +19,8 @@ public final class Application {
     this.worksheet = new Spreadsheet();
     this.spreadsheets = new ArrayList<Spreadsheet>();
     this.spreadsheets.add(this.worksheet);
+	this.list = new ArrayList<String>();
+	this.list.add(worksheet.getName());
   }
 	
 	/**
@@ -33,6 +37,8 @@ public final class Application {
 	 */
 	public void newSpreadsheet() {
 	    this.spreadsheets.add(new Spreadsheet());
+	    String name = spreadsheets.get(spreadsheets.size() - 1).getName();
+	    this.list.add(name);
 	}
 	
 	/**
@@ -79,13 +85,7 @@ public final class Application {
 	 * @return
 	 */
 	public Iterable<String> listSpreadsheets() {
-		ArrayList<String> list;
-		list = new ArrayList<String>();
-		for (Spreadsheet sheet : spreadsheets) {
-			list.add(sheet.getName());
-		}
-		 return (Iterable<String>) list;
-		
+		 return list;	
 	}
 	/**
 	 * exits the application with exit code 0.

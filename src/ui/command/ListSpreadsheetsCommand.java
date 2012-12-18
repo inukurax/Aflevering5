@@ -4,7 +4,6 @@ import spreadsheet.Application;
 
 public class ListSpreadsheetsCommand extends Command {
 
-	@Override
 	public void execute() {
 		Iterable<String> list= Application.instance.listSpreadsheets();
 

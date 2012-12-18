@@ -7,7 +7,6 @@ import spreadsheet.Application;
 
 public class PrintCurrentCommand extends Command {
 
-	@Override
 	public void execute() {
 		String str = Application.instance.getWorksheet().getName();
 		System.out.println(str);

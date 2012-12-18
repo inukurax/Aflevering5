@@ -3,21 +3,28 @@ package ui.command;
 import spreadsheet.Application;
 import spreadsheet.NoSuchSpreadsheetException;
 import spreadsheet.Position;
+import ui.SaveFile;
 
 public class GetCommand extends Command {
 	
 	private Position pos;
+	private int arg1;
+	private int arg2;
 
-	public GetCommand(final int arg1, final int arg2) {
-
-		Position pos = new Position(arg1, arg2);
+	public GetCommand(int arg1, int arg2) {
+		this.pos = new Position(arg1, arg2);
+		this.arg1 = arg1;
+		this.arg2 = arg2;
 	}
-	@Override
+	
 	public void execute() throws NoSuchSpreadsheetException {
-		
 		try {
-		String str = Application.instance.getWorksheet().get(pos).toString();
-		System.out.println(str);
+			
+			String str = Application.instance.getWorksheet().get(pos).toString();
+			System.out.println(str);
+			String save = String.format("get %s %s", arg1,arg2);
+			SaveFile.saveFile.add(save);
+
 		}
 		catch (NullPointerException e) {
 			System.out.println("Null expression found " + e.toString());

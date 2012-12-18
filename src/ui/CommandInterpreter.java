@@ -34,8 +34,8 @@ public final class CommandInterpreter {
     case "pws" : return new PrintCurrentCommand();
     case "ns"  : return new NewSpreadsheetCommand();
     case "ls"  : return new ListSpreadsheetsCommand();
-    case "cws" : if (scanner.hasNext())
-				    return new ChangeWorksheetCommand(scanner.next());
+    case "cws" : if (scanner.hasNext()) 
+				    return new ChangeWorksheetCommand(scanner.next()); 
     			 return new ChangeWorksheetCommand("");
     case "get" : if (scanner.hasNextInt() ) {
 				    int argInt1 = scanner.nextInt();
