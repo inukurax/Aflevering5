@@ -2,23 +2,29 @@ package ui.command;
 
 import spreadsheet.Application;
 import spreadsheet.NoSuchSpreadsheetException;
+import ui.ErrorStream;
 import ui.SaveFile;
 
-public class ChangeWorksheetCommand extends Command {
+public final class ChangeWorksheetCommand extends Command {
 
-	  private final String name;
+	private final String name;
 
 	  /* Assumes that name is not null. */
-	  public ChangeWorksheetCommand (final String name) {
+	public ChangeWorksheetCommand (final String name) {
 	    this.name = name;
-	 }
+	}
 	@Override
 	public void execute() {
+		if (name.isEmpty()) {
+		ErrorStream.instance.show("Please use syntax \"cws Sheet-name\" ");	
+			return;
+		}
+
 		try {
 			Application.instance.changeWorksheet(name);
-			SaveFile.saveFile.add("cws" + name);
+			SaveFile.saveFile.add("cws " + name);
 		} catch (NoSuchSpreadsheetException e) {
-			System.out.println(e.toString());
+			ErrorStream.instance.show(e.toString());
 		}
 	}
 

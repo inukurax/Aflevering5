@@ -3,9 +3,10 @@ package ui.command;
 import spreadsheet.Application;
 import spreadsheet.NoSuchSpreadsheetException;
 import spreadsheet.Position;
+import ui.ErrorStream;
 import ui.SaveFile;
 
-public class GetCommand extends Command {
+public final class GetCommand extends Command {
 	
 	private Position pos;
 	private int arg1;
@@ -27,7 +28,7 @@ public class GetCommand extends Command {
 
 		}
 		catch (NullPointerException e) {
-			System.out.println("Null expression found " + e.toString());
+			ErrorStream.instance.show("Null expression found " + e.toString());
 		}
 	}
 

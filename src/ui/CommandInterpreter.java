@@ -45,7 +45,7 @@ public final class CommandInterpreter {
 					}
 				  }
     			 return new FailedCommand("get need 2 arguments of type int.");
-    			 
+    case "set" :   return new SetCommand();
     case "save" : if (scanner.hasNext()) {
     			  	String file = scanner.next();
     			  	int length = file.length();
@@ -63,4 +63,5 @@ public final class CommandInterpreter {
       String.format("Illegal start of command, \"%s\".", keyword));
   }
 
+  
 }

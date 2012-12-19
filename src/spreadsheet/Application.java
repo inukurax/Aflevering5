@@ -102,5 +102,14 @@ public final class Application {
 		int index = spreadsheets.size() - 1;
 		return spreadsheets.get(index);
 	}
+	
+	public void restart() throws NoSuchSpreadsheetException {
+		this.spreadsheets.clear();
+		this.list.clear();
+		Spreadsheet.count = 0;
+		this.worksheet = new Spreadsheet();
+		this.spreadsheets.add(this.worksheet);
+		this.list.add(this.worksheet.getName());
+	}
 
 }

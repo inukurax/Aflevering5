@@ -3,7 +3,7 @@ package ui.command;
 import spreadsheet.Application;
 import ui.SaveFile;
 
-public class NewSpreadsheetCommand extends Command {
+public final class NewSpreadsheetCommand extends Command {
 
 	public void execute() {
 		Application.instance.newSpreadsheet();

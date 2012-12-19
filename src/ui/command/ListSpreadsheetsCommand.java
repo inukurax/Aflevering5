@@ -2,7 +2,7 @@ package ui.command;
 
 import spreadsheet.Application;
 
-public class ListSpreadsheetsCommand extends Command {
+public final class ListSpreadsheetsCommand extends Command {
 
 	public void execute() {
 		Iterable<String> list= Application.instance.listSpreadsheets();

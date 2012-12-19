@@ -10,7 +10,7 @@ public class Spreadsheet {
 	
 	private ArrayList<Node> list;
 	private String name;
-	private static int count;
+	public static int count;
 	private int hash;
 	
 	/**

@@ -9,7 +9,7 @@ import spreadsheet.NoSuchSpreadsheetException;
 import ui.ErrorStream;
 import ui.SaveFile;
 
-public class SaveCommand extends Command {
+public final class SaveCommand extends Command {
 	
 	// stores what needs to be saved.
 	private BufferedWriter output;
