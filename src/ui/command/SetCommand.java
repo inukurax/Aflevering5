@@ -21,6 +21,7 @@ public final class SetCommand extends Command {
 	private int argInt2;
 	private String expType;
 	private String arguments;
+	private String fatTest = "";
 	private final static String constRegex ="((AConst)|(LConst)|(TConst))";
 	/**
 	 * @param argInt12
@@ -42,23 +43,29 @@ public final class SetCommand extends Command {
 		Expression expression;
 			expression = getType(expType, arguments);
 		if (expression != null) {
-			String argS = arguments.substring(1, arguments.lastIndexOf(" ") - 1);
+			arguments = arguments.replaceAll(fatTest, "");
 			Application.instance.getWorksheet().set(position, expression);
 			System.out.println(String.format("set new %s(%s) at Position(%d,%d)"
-					, expType, argS, argInt1, argInt2));
+					, expType, arguments, argInt1, argInt2));
 		}
-		else 
-			ErrorStream.instance.show("Invalid Expression:" + 
+		else {
+			ErrorStream.instance.show("Invalid Expression: " + 
 					String.format("new %s(%s) ", expType, arguments));
+		}
 	}
 	
-	private Expression getType(String type, String arg) {;
+	private Expression getType(String type, String arg) {
+		Pattern constPattern = Pattern.compile(constRegex);
 
 		Scanner scan = new Scanner(arg);
 		try {
-		switch (type) {
-		case "AConst" : if (scan.hasNextInt()) 
-							return new AConst(scan.nextInt());
+		switch (type) { 
+		case "AConst" : if (scan.hasNextInt()) {
+							int tal = scan.nextInt();
+							if (scan.hasNextLine())
+								fatTest = scan.nextLine();
+							return new AConst(tal);
+						}
 						return null;
 		case "LConst" : if (scan.hasNextBoolean())
 							return new LConst(scan.nextBoolean());
@@ -66,8 +73,7 @@ public final class SetCommand extends Command {
 		case "TConst" : if (scan.hasNext())
 							return new TConst(scan.next());
 						return null;
-		case "Neg" : Pattern pattern = Pattern.compile(constRegex);
-					 if (scan.findInLine(pattern) != null ) {
+		case "Neg" : if (scan.findInLine(constPattern) != null ) {
 						    MatchResult result = scan.match();
 						    String type2 = result.group(1);
 						    if (scan.hasNextLine())
