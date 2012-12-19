@@ -13,6 +13,10 @@ final class Interpreter {
 
   private final Scanner scanner;
 
+  /**
+   * Initializes a scanner to scan
+   * system input in the console.
+   */
   private Interpreter() {
     this.scanner = new Scanner(System.in);
   }
