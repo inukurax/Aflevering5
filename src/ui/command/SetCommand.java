@@ -42,6 +42,7 @@ public final class SetCommand extends Command {
 		case "AConst" : return new AConst(0);
 		case "Add" : return new Add(null,null);
 		case "Neg" : return new Neg(null);
+		case "LConst" : return new LConst(false);
 
 		}
 		return null;
