@@ -45,6 +45,9 @@ public final class SetCommand extends Command {
 		System.out.println(String.format("set new %s(%s)" +
 				"at Position(%d,%d)", expType, writeOutArg, argInt1, argInt2));
 		}
+		else 
+			ErrorStream.instance.show("Invalid Expression:");
+
 
 	}
 	
@@ -57,14 +60,10 @@ public final class SetCommand extends Command {
 							writeOutArg = scan.nextInt();
 							return new AConst(writeOutArg);
 						}
-						throw new NoSuchElementException();
 		case "LConst" : if (scan.hasNextBoolean())
 							return new LConst(scan.nextBoolean());
-						throw new NoSuchElementException();
-
 		case "TConst" : if (scan.hasNext())
 							return new TConst(scan.next());
-						throw new NoSuchElementException();
 
 		/*
 		case "Add" :  return new Add(getType("Add", arguments),
