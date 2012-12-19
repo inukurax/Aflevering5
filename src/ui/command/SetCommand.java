@@ -40,10 +40,11 @@ public final class SetCommand extends Command {
 		Position position = new Position(argInt1, argInt2);
 		Expression expression;
 			expression = getType(expType, arguments);
-		
+		if (expression != null) {
 		Application.instance.getWorksheet().set(position, expression);
 		System.out.println(String.format("set new %s(%s)" +
 				"at Position(%d,%d)", expType, writeOutArg, argInt1, argInt2));
+		}
 
 	}
 	
@@ -56,10 +57,15 @@ public final class SetCommand extends Command {
 							writeOutArg = scan.nextInt();
 							return new AConst(writeOutArg);
 						}
+						throw new NoSuchElementException();
 		case "LConst" : if (scan.hasNextBoolean())
 							return new LConst(scan.nextBoolean());
+						throw new NoSuchElementException();
+
 		case "TConst" : if (scan.hasNext())
 							return new TConst(scan.next());
+						throw new NoSuchElementException();
+
 		/*
 		case "Add" :  return new Add(getType("Add", arguments),
 				getType("Add", arguments));
