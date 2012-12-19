@@ -46,9 +46,8 @@ public final class SetCommand extends Command {
 				"at Position(%d,%d)", expType, writeOutArg, argInt1, argInt2));
 		}
 		else 
-			ErrorStream.instance.show("Invalid Expression:");
-
-
+			ErrorStream.instance.show("Invalid Expression:" + 
+					String.format("new %s(%s) ", expType, arguments));
 	}
 	
 	private Expression getType(String str, String arg) {;
