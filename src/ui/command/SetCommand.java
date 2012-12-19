@@ -60,10 +60,13 @@ public final class SetCommand extends Command {
 							writeOutArg = scan.nextInt();
 							return new AConst(writeOutArg);
 						}
+						return null;
 		case "LConst" : if (scan.hasNextBoolean())
 							return new LConst(scan.nextBoolean());
+						return null;
 		case "TConst" : if (scan.hasNext())
 							return new TConst(scan.next());
+						return null;
 
 		/*
 		case "Add" :  return new Add(getType("Add", arguments),
