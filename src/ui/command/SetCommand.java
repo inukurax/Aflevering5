@@ -32,17 +32,20 @@ public final class SetCommand extends Command {
 	@Override
 	public void execute() throws NoSuchSpreadsheetException {
 		Position position = new Position(argInt1, argInt2);
-		AConst expression = new AConst(2);
+		Expression expression = this.getType(expType);
 		Application.instance.getWorksheet().set(position, expression);
-		System.out.println(String.format("set new %s(%s) at Position(%d,%d)",expType, arguments,argInt1,argInt2));
+		System.out.println(String.format("set new %s(%s) " +
+				"at Position(%d,%d)",expType, arguments,argInt1,argInt2));
 	}
 	
 	private Expression getType(String str) {
 		switch (str) {
-		case "AConst" : return new AConst(0);
-		case "Add" : return new Add(null,null);
-		case "Neg" : return new Neg(null);
-		case "LConst" : return new LConst(false);
+		case "AConst" : return new AConst(Integer.parseInt(arguments));
+		case "LConst" : return new LConst(Boolean.parseBoolean(arguments));
+		case "TConst" : return new TConst(arguments);
+		case "Add" : return new Add(getType(arguments),getType(arguments));
+		case "Neg" : return new Neg(getType(arguments));
+
 
 		}
 		return null;
