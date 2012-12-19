@@ -25,11 +25,10 @@ public final class GetCommand extends Command {
 			System.out.println(str);
 			String save = String.format("get %s %s", arg1,arg2);
 			SaveFile.saveFile.add(save);
-
 		}
 		catch (NullPointerException e) {
-			ErrorStream.instance.show("Null expression found " + e.toString());
-		}
+			ErrorStream.instance.show(String.format("Null expression at %s %s -> "+ e.toString(), arg1,arg2));
+		} 
 	}
 
 }
