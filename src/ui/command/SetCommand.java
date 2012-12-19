@@ -41,9 +41,9 @@ public final class SetCommand extends Command {
 		Expression expression;
 			expression = getType(expType, arguments);
 		if (expression != null) {
-		Application.instance.getWorksheet().set(position, expression);
-		System.out.println(String.format("set new %s(%s)" +
-				"at Position(%d,%d)", expType, writeOutArg, argInt1, argInt2));
+			Application.instance.getWorksheet().set(position, expression);
+			System.out.println(String.format("set new %s(%s) at Position(%d,%d)"
+					, expType, arguments, argInt1, argInt2));
 		}
 		else 
 			ErrorStream.instance.show("Invalid Expression:" + 
@@ -55,10 +55,8 @@ public final class SetCommand extends Command {
 		Scanner scan = new Scanner(arg);
 		try {
 		switch (str) {
-		case "AConst" : if (scan.hasNextInt()) {
-							writeOutArg = scan.nextInt();
-							return new AConst(writeOutArg);
-						}
+		case "AConst" : if (scan.hasNextInt()) 
+							return new AConst(scan.nextInt());
 						return null;
 		case "LConst" : if (scan.hasNextBoolean())
 							return new LConst(scan.nextBoolean());
