@@ -29,7 +29,7 @@ public final class SetCommand extends Command {
 	}
 	@Override
 	public void execute() throws NoSuchSpreadsheetException {
-		Position position = new Position(1, 2);
+		Position position = new Position(argInt1, argInt2);
 		AConst expression = new AConst(2);
 		Application.instance.getWorksheet().set(position, expression);
 		System.out.println(String.format("pos (%d,%d) exp: %s + rest:%s", argInt1,argInt2,expType, arguments));
