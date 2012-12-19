@@ -1,9 +1,10 @@
 package ui.command;
 
 
-import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
 
 import spreadsheet.Application;
 import spreadsheet.NoSuchSpreadsheetException;
@@ -20,7 +21,7 @@ public final class SetCommand extends Command {
 	private int argInt2;
 	private String expType;
 	private String arguments;
-	private int writeOutArg;
+	private final static String constRegex ="((AConst)|(LConst)|(TConst))";
 	/**
 	 * @param argInt12
 	 * @param argInt22
@@ -41,20 +42,21 @@ public final class SetCommand extends Command {
 		Expression expression;
 			expression = getType(expType, arguments);
 		if (expression != null) {
+			String argS = arguments.substring(1, arguments.lastIndexOf(" ") - 1);
 			Application.instance.getWorksheet().set(position, expression);
 			System.out.println(String.format("set new %s(%s) at Position(%d,%d)"
-					, expType, arguments, argInt1, argInt2));
+					, expType, argS, argInt1, argInt2));
 		}
 		else 
 			ErrorStream.instance.show("Invalid Expression:" + 
 					String.format("new %s(%s) ", expType, arguments));
 	}
 	
-	private Expression getType(String str, String arg) {;
+	private Expression getType(String type, String arg) {;
 
 		Scanner scan = new Scanner(arg);
 		try {
-		switch (str) {
+		switch (type) {
 		case "AConst" : if (scan.hasNextInt()) 
 							return new AConst(scan.nextInt());
 						return null;
@@ -64,13 +66,19 @@ public final class SetCommand extends Command {
 		case "TConst" : if (scan.hasNext())
 							return new TConst(scan.next());
 						return null;
+		case "Neg" : Pattern pattern = Pattern.compile(constRegex);
+					 if (scan.findInLine(pattern) != null ) {
+						    MatchResult result = scan.match();
+						    String type2 = result.group(1);
+						    if (scan.hasNextLine())
+						return new Neg(getType(type2, scan.nextLine()));
+					 	}
+						return null;
 
 		/*
 		case "Add" :  return new Add(getType("Add", arguments),
 				getType("Add", arguments));
-		case "Neg" : return new Neg(getType("Neg", arguments));
-
-*/
+		 */
 		}
 		} catch (NoSuchElementException e) {
 			ErrorStream.instance.show("Invalid input: " + e.toString());
