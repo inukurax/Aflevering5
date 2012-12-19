@@ -16,7 +16,7 @@ public final class CommandInterpreter {
 	private final static String commandRegex = 
 			"(\\d+) (\\d+) ((Add)|(AConst)|" +
 			" (Neg)|(LConst)|(Conjunct)|(Disjunct)" +
-			"|(Not)|(TConst)|(Concat)) ";
+			"|(Not)|(TConst)|(Concat))";
 
   private CommandInterpreter() {
     // The class should not be instantiated.
