@@ -14,8 +14,8 @@ public final class CellReference extends Expression {
 	 * @param position a non null Position
 	 */
 	public CellReference (final Spreadsheet spread, final Position position) {
-		   sheet = spread;
-		   pos = position;
+		   this.sheet = spread;
+		   this.pos = position;
 	}
 
 	@Override
