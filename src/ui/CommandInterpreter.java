@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
 import ui.command.*;
 
 public final class CommandInterpreter {
+	/**
+	 * Regex of legal Position + Expressions.
+	 */
 	private final static String commandRegex = "(\\d+) (\\d+) ((Add)|(AConst)|"
 			+ "(Neg)|(LConst)|(Conjunct)|(Disjunct)"
 			+ "|(Not)|(TConst)|(Concat)|(CellReference))";
@@ -17,15 +20,14 @@ public final class CommandInterpreter {
 
 	/**
 	 * 
-	 * pws prints the current worksheet name; 
-	 * ns initializes a new spreadsheet;
-	 * ls list initialized spreadsheets;
-	 * cws changes the worksheet to the given
-	 * spreadsheet; 
-	 * set sets the given expression at the given position in the
-	 * current worksheet. 
-	 * get gets the expression at the given position in the
-	 * current worksheet
+	 * pws: prints the current worksheet name; 
+	 * ns: initializes a new spreadsheet;
+	 * ls: list initialized spreadsheets;
+	 * cws: changes the worksheet to the given spreadsheet; 
+	 * set sets the given expression at the given 
+	 * position in the current worksheet. 
+	 * get: gets the expression at the given 
+	 * position in the current worksheet
 	 * 
 	 * @param scanner
 	 * @return the Command equal to the input in console. if no match, writes

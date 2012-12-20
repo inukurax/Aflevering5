@@ -3,13 +3,17 @@ package spreadsheet;
 import java.util.ArrayList;
 
 /**
- * @version 2.0
+ * @version 3.0
  * Changed to use ArrayList
+ * Added name and positionList and cellList.
  */
 public class Spreadsheet {
 	
+	// Holds nodes added to Spreadsheet.
 	private ArrayList<Node> list;
+	// Holds Position of CellReference. Only adds entries in SetCommand
 	private ArrayList<Position> positionList;
+	// Holds Position that CellReference points to. Only adds entries in SetCommand 
 	private ArrayList<Position> cellList;
 
 
@@ -20,6 +24,9 @@ public class Spreadsheet {
 	
 	/**
 	 * Construct a spreadsheet of Nodes in an ArrayList
+	 * Spreadsheet is giving name Sheet<Count>
+	 * Initializes positionList and cellList.
+	 * Sets hashCode to Count++, for uniqueness.
 	 */
 	public Spreadsheet() {
 		list  = new ArrayList<Node>();
@@ -39,7 +46,7 @@ public class Spreadsheet {
 	}
 	 
 	/**
-	 * Checks for equality by name instead.
+	 * Checks for equality by Spreadsheet name.
 	 */
 	public boolean equals(Spreadsheet other) {
 		if (other == null)
@@ -48,15 +55,15 @@ public class Spreadsheet {
 	}
 	
 	/**
-	 * Uniq hashCode
-	 * @return hashcode
+	 * Unique hashCode
+	 * @return hashCode for the Spreadsheet.
 	 */
 	public int hashCode() {
 		return hash;
 	}
 	
 	/**
-	 * private method for checking for duplication
+	 * Private method for checking for duplication of Positions in Spreadsheet
 	 * @param position non null position
 	 * @return -1 if not in list else index
 	 */
@@ -69,7 +76,7 @@ public class Spreadsheet {
 	}
 		
 	/**
-	 * insert a Position and Expression (as a Node) in the Spreadsheet
+	 * Inserts a Position and Expression (as a Node) in the Spreadsheet
 	 * will overwrite if position already got an expression.
 	 * @param position is a non null Position
 	 * @param expression is a non null  Expression
@@ -95,13 +102,29 @@ public class Spreadsheet {
 		return null;
 	}
 	
+	/**
+	 * Accesor method for getting positionList.
+	 * @return list of Positions with a CellReference Expression
+	 */
 	public  ArrayList<Position> getPosList() {
 		return positionList;
 	}
+	/**
+	 * Accesor method for getting cellList
+	 * @return list of Position that CellReference points to.
+	 */
 	public  ArrayList<Position> getCellList() {
 		return cellList;
 	}
 	
+	/**
+	 * Runs through every element in the
+	 * spreadsheets list of Positions with a CellReferences
+	 * and check if it equals any of the elements
+	 * in the spreadsheets list of Position added with a CellReference .
+	 * expressions
+	 * @return true if spreadsheet holds a infinity loop E±xpression.
+	 */
 	public boolean isCyclic() {
 	int i = 0;
 	if (this.getCellList().isEmpty() || this.getPosList().isEmpty())
