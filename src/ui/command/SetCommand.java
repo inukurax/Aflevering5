@@ -40,7 +40,7 @@ public final class SetCommand extends Command {
 	public void execute() throws NoSuchSpreadsheetException {
 		Position position = new Position(argInt1, argInt2);
 		Expression expression;
-			expression = getType(expType, arguments);
+			expression = getExpression(expType, arguments);
 		if (expression != null) {
 			arguments = arguments.replaceAll(fatTest, "");
 			Application.instance.getWorksheet().set(position, expression);
@@ -55,12 +55,12 @@ public final class SetCommand extends Command {
 		}
 	}
 	
-	private Expression getType(String type, String arg) {
+	private Expression getExpression(String expType, String arg) {
 		Pattern constPattern = Pattern.compile(constRegex);
 
 		Scanner scan = new Scanner(arg);
 		try {
-		switch (type) { 
+		switch (expType) { 
 		case "AConst" : if (scan.hasNextInt()) {
 							int tal = scan.nextInt();
 							if (scan.hasNextLine())
@@ -86,17 +86,17 @@ public final class SetCommand extends Command {
 						    MatchResult result = scan.match();
 						    String type2 = result.group(1);
 						    if (scan.hasNextLine())
-						return new Neg(getType(type2, scan.nextLine()));
+						return new Neg(getExpression(type2, scan.nextLine()));
 					 	}
 						return null;
 
 		case "Add" : String[] argSplit = splitTwoArg(arg);
-					 return new Add(getType(argSplit[0],argSplit[1]),
-							getType(argSplit[2],  argSplit[3]));
+					 return new Add(getExpression(argSplit[0],argSplit[1]),
+							 getExpression(argSplit[2],  argSplit[3]));
 					 
 		case "Concat" : String[] argSplit2 = splitTwoArg(arg);
-						return new Add(getType(argSplit2[0],argSplit2[1]),
-								getType(argSplit2[2],  argSplit2[3]));
+						return new Add(getExpression(argSplit2[0],argSplit2[1]),
+								getExpression(argSplit2[2],  argSplit2[3]));
 						
 		}
 		} catch (Exception e ) {
