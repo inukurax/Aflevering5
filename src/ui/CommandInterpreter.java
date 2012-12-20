@@ -31,66 +31,56 @@ public final class CommandInterpreter {
 		final String keyword = scanner.next();
 
 		switch (keyword) {
-		case "pws":
-			return new PrintCurrentCommand();
-		case "ns":
-			return new NewSpreadsheetCommand();
-		case "ls":
-			return new ListSpreadsheetsCommand();
-		case "cws":
-			if (scanner.hasNext())
-				return new ChangeWorksheetCommand(scanner.next());
-			return new ChangeWorksheetCommand("");
-		case "get":
-			if (scanner.findInLine("(\\d+) (\\d+)") != null) {
-				MatchResult result = scanner.match();
-				int argInt1 = Integer.parseInt(result.group(1));
-				int argInt2 = Integer.parseInt(result.group(2));
-
-				return new GetCommand(argInt1, argInt2);
-			}
-			return new FailedCommand("Syntax error: \"get 0 0\"");
-		case "set":
-			Pattern x = Pattern.compile(commandRegex);
-
-			if (scanner.findInLine(x) != null) {
-				MatchResult result = scanner.match();
-				int argInt1 = Integer.parseInt(result.group(1));
-				int argInt2 = Integer.parseInt(result.group(2));
-				String type = result.group(3);
-				String rest = "";
-				if (scanner.hasNextLine()) {
-					rest = scanner.nextLine();
-					rest = rest.substring(1, rest.length());
+		case "pws": return new PrintCurrentCommand();
+		case "ns": return new NewSpreadsheetCommand();
+		case "ls": return new ListSpreadsheetsCommand();
+		case "cws": if (scanner.hasNext())
+						return new ChangeWorksheetCommand(scanner.next());
+					return new ChangeWorksheetCommand("");
+		case "get": if (scanner.findInLine("(\\d+) (\\d+)") != null) {
+						MatchResult result = scanner.match();
+						int argInt1 = Integer.parseInt(result.group(1));
+						int argInt2 = Integer.parseInt(result.group(2));
+		
+						return new GetCommand(argInt1, argInt2);
+					}
+					return new FailedCommand("Syntax error: \"get 0 0\"");
+		case "set": Pattern x = Pattern.compile(commandRegex);
+				if (scanner.findInLine(x) != null) {
+					MatchResult result = scanner.match();
+					int argInt1 = Integer.parseInt(result.group(1));
+					int argInt2 = Integer.parseInt(result.group(2));
+					String type = result.group(3);
+					String rest = "";
+					if (scanner.hasNextLine()) {
+						rest = scanner.nextLine();
+						rest = rest.substring(1, rest.length());
+					}
+					return new SetCommand(argInt1, argInt2, type, rest);
 				}
-				return new SetCommand(argInt1, argInt2, type, rest);
-			}
-			return new FailedCommand("Syntax error: \"set 0 0 Aconst 2\"");
+				return new FailedCommand("Syntax error: \"set 0 0 Aconst 2\"");
 
-		case "save":
-			if (scanner.hasNext()) {
-				String file = scanner.next();
-				int length = file.length();
-				if (length > 4) {
-					String type = file.substring(length - 4, length);
-					if (type.equals(".ark"))
-						return new SaveCommand(file);
-				}
-			}
-			return new FailedCommand("Need argument: \"save filename.ark\"");
-		case "load":
-			if (scanner.hasNext()) {
-				String file = scanner.next();
-				int length = file.length();
-				if (length > 4) {
-					String type = file.substring(length - 4, length);
-					if (type.equals(".ark"))
-						return new LoadCommand(file);
-				}
-			}
-			return new FailedCommand("Need argument: \"load filename.ark\"");
-		case "exit":
-			return new ExitCommand();
+		case "save": if (scanner.hasNext()) {
+						String file = scanner.next();
+						int length = file.length();
+						if (length > 4) {
+							String type = file.substring(length - 4, length);
+							if (type.equals(".ark"))
+								return new SaveCommand(file);
+						}
+					}
+				return new FailedCommand("Need argument: \"save filename.ark\"");
+		case "load": if (scanner.hasNext()) {
+						String file = scanner.next();
+						int length = file.length();
+						if (length > 4) {
+							String type = file.substring(length - 4, length);
+							if (type.equals(".ark"))
+								return new LoadCommand(file);
+						}
+					}
+				return new FailedCommand("Need argument: \"load filename.ark\"");
+		case "exit": return new ExitCommand();
 		}
 
 		return new FailedCommand(String.format(

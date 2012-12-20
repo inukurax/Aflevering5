@@ -82,6 +82,18 @@ public final class SetCommand extends Command {
 							return new TConst(str);
 						}
 						return null;
+		case "CellReference" : if (scan.findInLine("(\\w+) (\\d+) (\\d+)") != null) {
+								MatchResult result = scan.match();
+								String sheetName = result.group(1);
+								int argInt1 = Integer.parseInt(result.group(2));
+								int argInt2 = Integer.parseInt(result.group(3));
+								Position pos = new Position(argInt1, argInt2);
+								Spreadsheet sheet = Application.instance.
+										getSpreadsheet(sheetName);
+								return new CellReference(sheet, pos);
+							}
+							return null;
+			
 		case "Neg" : if (scan.findInLine(constPattern) != null ) {
 						    MatchResult result = scan.match();
 						    String type2 = result.group(1);
