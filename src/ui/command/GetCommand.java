@@ -1,6 +1,7 @@
 package ui.command;
 
 import spreadsheet.Application;
+import spreadsheet.CellReference;
 import spreadsheet.NoSuchSpreadsheetException;
 import spreadsheet.Position;
 import ui.ErrorStream;
@@ -20,11 +21,15 @@ public final class GetCommand extends Command {
 	
 	public void execute() throws NoSuchSpreadsheetException {
 		try {
-			
+			if (!CellReference.isCyclic) {
 			String str = Application.instance.getWorksheet().get(pos).toString();
 			System.out.println(str);
 			String save = String.format("get %s %s", arg1,arg2);
 			SaveFile.saveFile.add(save);
+			}
+			else
+				System.out.println("Cyclic expression");
+
 		}
 		catch (NullPointerException e) {
 			ErrorStream.instance.show(String.format("Null expression at %s %s -> "+ e.toString(), arg1,arg2));

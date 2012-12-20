@@ -110,31 +110,46 @@ public final class SetCommand extends Command {
 					    	return new Not(getExpression(type2, scan.nextLine()));
 				 	 }
 					 return null;
-		case "Add" : argSplit = splitTwoArg(arg);
+		case "Add" : if (scan.findInLine(constPattern) != null ) {
+					 argSplit = splitTwoArg(arg);
 					 return new Add(getExpression(argSplit[0],argSplit[1]),
 							 getExpression(argSplit[2],  argSplit[3]));
-		case "Conjunct" : argSplit = splitTwoArg(arg);
+					}
+					return null;
+		case "Conjunct" : if (scan.findInLine(constPattern) != null ) {
+							argSplit = splitTwoArg(arg);
 						 return new Conjunct(getExpression(argSplit[0],argSplit[1]),
 								  getExpression(argSplit[2],  argSplit[3]));
-		case "Disjunct" : argSplit = splitTwoArg(arg);
+						}
+						return null;
+		case "Disjunct" : if (scan.findInLine(constPattern) != null ) {
+						argSplit = splitTwoArg(arg);
 						  return new Disjunct(getExpression(argSplit[0],argSplit[1]),
 								  getExpression(argSplit[2],  argSplit[3]));
+						}
+						return null;
 						  
-		case "Concat" : argSplit = splitTwoArg(arg);
+		case "Concat" : if (scan.findInLine(constPattern) != null ) {
+						argSplit = splitTwoArg(arg);
 						return new Concat(getExpression(argSplit[0],argSplit[1]),
 							getExpression(argSplit[2],  argSplit[3]));
+						}
+						return null;
 						
 		}
 		} catch (Exception e ) {
 			ErrorStream.instance.show("Invalid input: " + e.toString());
+			e.printStackTrace();
 		}
+		scan.close();
 		return null;
 		
 	}
 	
 	/**
 	 * method for Concat and Add
-	 * Splits a String in to a list of first argument and second.
+	 * Splits a String of polish notation, 
+	 * in to a list of first argument and second.
 	 * This is needed because Concat and Add takes two arguments.
 	 * @param str an console input for Add or Concat
 	 * @return should return String[] of length() == 4 

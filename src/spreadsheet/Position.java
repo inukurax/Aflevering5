@@ -39,6 +39,8 @@ public final class Position {
      * another Position
      */
     public boolean isEqualTo(final Position other){
+    	if (other == null)
+    		return false;
         return (other.getRow() == getRow() && other.getColumn() == getColumn());
     }
 

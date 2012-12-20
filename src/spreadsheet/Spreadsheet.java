@@ -12,6 +12,7 @@ public class Spreadsheet {
 	private String name;
 	public static int count;
 	private int hash;
+	public static Position isSet = null;
 	
 	/**
 	 * Construct a spreadsheet of Nodes in an ArrayList
@@ -74,6 +75,8 @@ public class Spreadsheet {
 			list.set(index, new Node(position, expression));
 		else
 			list.add(new Node (position, expression)); 
+		isSet = position;
+
 			
 	}
 	/**

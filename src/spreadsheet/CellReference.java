@@ -10,6 +10,7 @@ public final class CellReference extends Expression {
 	
 	private Spreadsheet sheet;
 	private Position pos;
+	public static boolean isCyclic = false;
 	
 	/**
 	 * Stores a reference in a Spreadsheet with a non null Position
@@ -19,6 +20,8 @@ public final class CellReference extends Expression {
 	public CellReference (final Spreadsheet spread, final Position position) {
 		this.sheet = spread;
 		this.pos = position;
+		if (position.isEqualTo(Spreadsheet.isSet))
+			isCyclic  = true;
 	}
 
 	@Override
