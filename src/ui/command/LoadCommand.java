@@ -31,7 +31,7 @@ public class LoadCommand extends Command {
 			while (scanner.hasNextLine()) {
 				
 				String nextLine = scanner.nextLine();
-				if (nextLine != null)
+				if (!nextLine.isEmpty())
 			CommandInterpreter.interpret(new Scanner(nextLine)).execute();
 			}
 			scanner.close();

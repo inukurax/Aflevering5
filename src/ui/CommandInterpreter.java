@@ -17,10 +17,14 @@ public final class CommandInterpreter {
 
 	/**
 	 * 
-	 * pws prints the current worksheet name; ns initializes a new spreadsheet;
-	 * ls list initialized spreadsheets; cws changes the worksheet to the given
-	 * spreadsheet; set sets the given expression at the given position in the
-	 * current worksheet. get gets the expression at the given position in the
+	 * pws prints the current worksheet name; 
+	 * ns initializes a new spreadsheet;
+	 * ls list initialized spreadsheets;
+	 * cws changes the worksheet to the given
+	 * spreadsheet; 
+	 * set sets the given expression at the given position in the
+	 * current worksheet. 
+	 * get gets the expression at the given position in the
 	 * current worksheet
 	 * 
 	 * @param scanner

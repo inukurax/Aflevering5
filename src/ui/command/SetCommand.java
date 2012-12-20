@@ -115,14 +115,14 @@ public final class SetCommand extends Command {
 							 getExpression(argSplit[2],  argSplit[3]));
 		case "Conjunct" : argSplit = splitTwoArg(arg);
 						 return new Conjunct(getExpression(argSplit[0],argSplit[1]),
-								 getExpression(argSplit[2],  argSplit[3]));
+								  getExpression(argSplit[2],  argSplit[3]));
 		case "Disjunct" : argSplit = splitTwoArg(arg);
-						 return new Disjunct(getExpression(argSplit[0],argSplit[1]),
-								 getExpression(argSplit[2],  argSplit[3]));
-						 
+						  return new Disjunct(getExpression(argSplit[0],argSplit[1]),
+								  getExpression(argSplit[2],  argSplit[3]));
+						  
 		case "Concat" : argSplit = splitTwoArg(arg);
-						return new Add(getExpression(argSplit[0],argSplit[1]),
-								getExpression(argSplit[2],  argSplit[3]));
+						return new Concat(getExpression(argSplit[0],argSplit[1]),
+							getExpression(argSplit[2],  argSplit[3]));
 						
 		}
 		} catch (Exception e ) {
