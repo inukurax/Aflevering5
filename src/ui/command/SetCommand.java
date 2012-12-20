@@ -1,7 +1,6 @@
 package ui.command;
 
 
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
@@ -14,6 +13,7 @@ import spreadsheet.logical.*;
 import spreadsheet.textual.*;
 import spreadsheet.*;
 import ui.ErrorStream;
+import ui.SaveFile;
 
 public final class SetCommand extends Command {
 
@@ -24,8 +24,8 @@ public final class SetCommand extends Command {
 	private String fatTest = "";
 	private final static String constRegex ="((AConst)|(LConst)|(TConst))";
 	/**
-	 * @param argInt12
-	 * @param argInt22
+	 * @param argInt1
+	 * @param argInt2
 	 * @param type
 	 * @param rest
 	 */
@@ -34,8 +34,7 @@ public final class SetCommand extends Command {
 		this.argInt1 = argInt1;
 		this.argInt2 = argInt2;
 		this.expType = type;
-		this.arguments = rest;
-		
+		this.arguments = rest;	
 	}
 	@Override
 	public void execute() throws NoSuchSpreadsheetException {
@@ -47,6 +46,8 @@ public final class SetCommand extends Command {
 			Application.instance.getWorksheet().set(position, expression);
 			System.out.println(String.format("set new %s(%s) at Position(%d,%d)"
 					, expType, arguments, argInt1, argInt2));
+			SaveFile.saveFile.add(String.format("set %d %d %s %s"
+					,  argInt1, argInt2,expType, arguments));
 		}
 		else {
 			ErrorStream.instance.show("Invalid Expression: " + 
@@ -67,11 +68,19 @@ public final class SetCommand extends Command {
 							return new AConst(tal);
 						}
 						return null;
-		case "LConst" : if (scan.hasNextBoolean())
-							return new LConst(scan.nextBoolean());
+		case "LConst" : if (scan.hasNextBoolean()) {
+							boolean bool = scan.nextBoolean();
+							if (scan.hasNextLine())
+								fatTest = scan.nextLine();
+							return new LConst(bool);
+						}
 						return null;
-		case "TConst" : if (scan.hasNext())
-							return new TConst(scan.next());
+		case "TConst" : if (scan.hasNext()) {
+							String str = scan.next();
+							if (scan.hasNextLine())
+								fatTest = scan.nextLine();
+							return new TConst(str);
+						}
 						return null;
 		case "Neg" : if (scan.findInLine(constPattern) != null ) {
 						    MatchResult result = scan.match();
@@ -82,18 +91,16 @@ public final class SetCommand extends Command {
 						return null;
 
 		case "Add" : String[] argSplit = splitTwoArg(arg);
-					if (arguments.contains("Add")) {
-						return new Add(getType(argSplit[0],argSplit[1]),
-								getType(argSplit[2],  argSplit[3]));
-					}
-				if (argSplit.length == 4)
-			return new Add(getType(argSplit[0],argSplit[1]),
-					getType(argSplit[2],  argSplit[3]));
-			return null;
+					 return new Add(getType(argSplit[0],argSplit[1]),
+							getType(argSplit[2],  argSplit[3]));
+					 
+		case "Concat" : String[] argSplit2 = splitTwoArg(arg);
+						return new Add(getType(argSplit2[0],argSplit2[1]),
+								getType(argSplit2[2],  argSplit2[3]));
+						
 		}
-		} catch (NoSuchElementException|NullPointerException e ) {
+		} catch (Exception e ) {
 			ErrorStream.instance.show("Invalid input: " + e.toString());
-			
 		}
 		return null;
 		
