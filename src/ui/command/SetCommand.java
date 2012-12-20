@@ -1,6 +1,7 @@
 package ui.command;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
@@ -8,6 +9,7 @@ import java.util.regex.Pattern;
 import spreadsheet.Application;
 import spreadsheet.NoSuchSpreadsheetException;
 import spreadsheet.Position;
+import spreadsheet.Spreadsheet;
 import spreadsheet.arithmetic.*;
 import spreadsheet.logical.*;
 import spreadsheet.textual.*;
@@ -84,14 +86,18 @@ public final class SetCommand extends Command {
 							return new TConst(str);
 						}
 						return null;
-		case "CellReference" : if (scan.findInLine("(\\w+) (\\d+) (\\d+)") != null) {
-								MatchResult result = scan.match();
-								String sheetName = result.group(1);
-								int argInt1 = Integer.parseInt(result.group(2));
-								int argInt2 = Integer.parseInt(result.group(3));
-								Position pos = new Position(argInt1, argInt2);
-								Spreadsheet sheet = Application.instance.
-										getSpreadsheet(sheetName);
+		case "CellReference" : 
+						if (scan.findInLine("(\\w+) (\\d+) (\\d+)") != null) {
+							MatchResult result = scan.match();
+							String sheetName = result.group(1);
+							int arguInt1 = Integer.parseInt(result.group(2));
+							int arguInt2 = Integer.parseInt(result.group(3));
+							Position pos = new Position(arguInt1, arguInt2);
+							Spreadsheet sheet = Application.instance.
+									getSpreadsheet(sheetName);
+							Position pos2 = new Position(this.argInt1, this.argInt2);
+								sheet.getCellList().add(pos);
+								sheet.getPosList().add(pos2);
 								return new CellReference(sheet, pos);
 							}
 							return null;

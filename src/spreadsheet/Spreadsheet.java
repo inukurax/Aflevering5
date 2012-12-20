@@ -10,11 +10,13 @@ public class Spreadsheet {
 	
 	private ArrayList<Node> list;
 	private ArrayList<Position> positionList;
+	private ArrayList<Position> cellList;
+
 
 	private String name;
 	public static int count;
 	private int hash;
-	public static Position isSet = null;
+
 	
 	/**
 	 * Construct a spreadsheet of Nodes in an ArrayList
@@ -25,6 +27,7 @@ public class Spreadsheet {
 		count++;
 		hash = count;
 		positionList = new ArrayList<Position>();
+		cellList = new ArrayList<Position>();
 	}
 	
 	/**
@@ -38,10 +41,10 @@ public class Spreadsheet {
 	/**
 	 * Checks for equality by name instead.
 	 */
-	public boolean equals(Spreadsheet sheet) {
-		if (sheet == null)
+	public boolean equals(Spreadsheet other) {
+		if (other == null)
 			return false;
-		return this.getName().equals(sheet.getName());
+		return this.getName().equals(other.getName());
 	}
 	
 	/**
@@ -51,8 +54,6 @@ public class Spreadsheet {
 	public int hashCode() {
 		return hash;
 	}
-	
-	
 	
 	/**
 	 * private method for checking for duplication
@@ -74,16 +75,12 @@ public class Spreadsheet {
 	 * @param expression is a non null  Expression
 	 */
 	public void set(final Position position, final Expression expression) {
-		
-		
 		int index = listContains(position);
 		if (index != -1) {
 			list.set(index, new Node(position, expression));
-			positionList.set(index, position);
 		}
 		else {
 			list.add(new Node (position, expression)); 
-			positionList.add(position);
 		}
 	}
 	/**
@@ -101,5 +98,23 @@ public class Spreadsheet {
 	public  ArrayList<Position> getPosList() {
 		return positionList;
 	}
+	public  ArrayList<Position> getCellList() {
+		return cellList;
+	}
+	
+	public boolean isCyclic() {
+	int i = 0;
+	if (this.getCellList().isEmpty() || this.getPosList().isEmpty())
+		return false;
+	while (i  < this.getCellList().size()) {
+		for (Position pos : this.getPosList()) {
+			if (this.getCellList().get(i).isEqualTo(pos))
+				return true;
+		}
+		i++;
+	}
+	return false;
+	}
+	
 	
 }

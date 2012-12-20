@@ -20,6 +20,9 @@ public final class GetCommand extends Command {
 	}
 	
 	public void execute() throws NoSuchSpreadsheetException {
+		if (Application.instance.getWorksheet().isCyclic()) 
+			System.out.println("Cyclic expression");
+		else {
 		try {
 			String str = Application.instance.getWorksheet().get(pos).toString();
 			System.out.println(str);
@@ -32,6 +35,7 @@ public final class GetCommand extends Command {
 		catch (NullPointerException e) {
 			ErrorStream.instance.show(String.format("Null expression at %s %s -> "+ e.toString(), arg1,arg2));
 		} 
+		}
 	}
 
 }
