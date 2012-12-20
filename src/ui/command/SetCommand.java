@@ -81,17 +81,72 @@ public final class SetCommand extends Command {
 					 	}
 						return null;
 
-		/*
-		case "Add" :  return new Add(getType("Add", arguments),
-				getType("Add", arguments));
-		 */
+		case "Add" : String[] argSplit = splitTwoArg(arg);
+					if (arguments.contains("Add")) {
+						return new Add(getType(argSplit[0],argSplit[1]),
+								getType(argSplit[2],  argSplit[3]));
+					}
+				if (argSplit.length == 4)
+			return new Add(getType(argSplit[0],argSplit[1]),
+					getType(argSplit[2],  argSplit[3]));
+			return null;
 		}
-		} catch (NoSuchElementException e) {
+		} catch (NoSuchElementException|NullPointerException e ) {
 			ErrorStream.instance.show("Invalid input: " + e.toString());
 			
 		}
 		return null;
 		
+	}
+	
+	/**
+	 * method for Concat and Add
+	 * Splits a String in to a list of first argument and second.
+	 * This is needed because Concat and Add takes two arguments.
+	 * @param str an console input for Add or Concat
+	 * @return should return String[] of length() == 4 
+	 *         index 0 = expression type of argument 1 of Add or Concat
+	 * 		   index 1 = index 0's arguments
+	 * 		   index 2 =  expression type of argument 2 of Add or Concat
+	 * 		   index 3 = index 2's arguments
+	 */
+	private static String[] splitTwoArg(String str) {
+		String[] list = str.split(" ");
+		int countConst = 0;
+		int countDuo = 1;
+		final String constRegex ="((AConst)|(LConst)|(TConst))";
+		final String duoRegex ="(Concat)|(Add)";
+		String newString = "";
+		String newStringName = "";
+
+		int i;
+		for (i = 0; countDuo > countConst && i < list.length; i++) {
+			if (list[i].matches(constRegex)) {
+				countConst++;
+			}
+			if (list[i].matches(duoRegex)) {
+				countDuo++;
+			}
+			if (i == 0) 
+			newStringName = list[i];	
+			
+			else
+			newString = newString + list[i] + " ";	
+
+		}
+		newString = newString + list[i];
+		String rest = "";
+		for (i = i+1; i < list.length; i++) {
+			rest = rest + " " + list[i];
+		}
+		rest = rest.replaceFirst(" ", "");
+
+		String restName = rest.substring(0, rest.indexOf(" "));
+		rest = rest.substring(rest.indexOf(" "), rest.length());
+		rest = rest.replaceFirst(" ", "");
+
+		String[] split = {newStringName, newString ,restName ,rest};
+		return split;
 	}
 
 }
