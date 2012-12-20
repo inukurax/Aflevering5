@@ -96,6 +96,7 @@ public final class SetCommand extends Command {
 							Spreadsheet sheet = Application.instance.
 									getSpreadsheet(sheetName);
 							Position pos2 = new Position(this.argInt1, this.argInt2);
+							if (sheet.get(pos) == null)
 								sheet.getCellList().add(pos);
 								sheet.getPosList().add(pos2);
 								return new CellReference(sheet, pos);
