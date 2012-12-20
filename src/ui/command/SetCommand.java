@@ -148,15 +148,15 @@ public final class SetCommand extends Command {
 	
 
 	/**
-	 * method for Concat and Add
+	 * method for Concat, Add, Disjunct, Conjunct. = double expressions
 	 * Splits a String of polish notation, 
 	 * in to a list of first argument and second.
 	 * This is needed because Concat and Add takes two arguments.
-	 * @param str an console input for Add or Concat
+	 * @param str an console input for double expression
 	 * @return should return String[] of length() == 4 
-	 *         index 0 = expression type of argument 1 of Add or Concat
+	 *         index 0 = expression type of argument 1 of double expression
 	 * 		   index 1 = index 0's arguments
-	 * 		   index 2 =  expression type of argument 2 of Add or Concat
+	 * 		   index 2 =  expression type of argument 2 of double expression
 	 * 		   index 3 = index 2's arguments
 	 */
 	private static String[] splitTwoArg(String str) {
