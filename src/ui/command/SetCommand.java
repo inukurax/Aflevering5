@@ -22,6 +22,7 @@ public final class SetCommand extends Command {
 	private String expType;
 	private String arguments;
 	private String fatTest = "";
+	private String[] argSplit;
 	private final static String constRegex ="((AConst)|(LConst)|(TConst))";
 	/**
 	 * @param argInt1
@@ -100,15 +101,28 @@ public final class SetCommand extends Command {
 						    if (scan.hasNextLine())
 						return new Neg(getExpression(type2, scan.nextLine()));
 					 	}
+					 
 						return null;
-
-		case "Add" : String[] argSplit = splitTwoArg(arg);
+		case "Not" : if (scan.findInLine(constPattern) != null ) {
+						MatchResult result = scan.match();
+						String type2 = result.group(1);
+					    if (scan.hasNextLine())
+					    	return new Not(getExpression(type2, scan.nextLine()));
+				 	 }
+					 return null;
+		case "Add" : argSplit = splitTwoArg(arg);
 					 return new Add(getExpression(argSplit[0],argSplit[1]),
 							 getExpression(argSplit[2],  argSplit[3]));
-					 
-		case "Concat" : String[] argSplit2 = splitTwoArg(arg);
-						return new Add(getExpression(argSplit2[0],argSplit2[1]),
-								getExpression(argSplit2[2],  argSplit2[3]));
+		case "Conjunct" : argSplit = splitTwoArg(arg);
+						 return new Conjunct(getExpression(argSplit[0],argSplit[1]),
+								 getExpression(argSplit[2],  argSplit[3]));
+		case "Disjunct" : argSplit = splitTwoArg(arg);
+						 return new Disjunct(getExpression(argSplit[0],argSplit[1]),
+								 getExpression(argSplit[2],  argSplit[3]));
+						 
+		case "Concat" : argSplit = splitTwoArg(arg);
+						return new Add(getExpression(argSplit[0],argSplit[1]),
+								getExpression(argSplit[2],  argSplit[3]));
 						
 		}
 		} catch (Exception e ) {

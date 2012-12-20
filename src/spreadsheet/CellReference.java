@@ -1,4 +1,7 @@
 package spreadsheet;
+
+import javax.xml.validation.Validator;
+
 /**
  * 
  * CellReference extends Expression
@@ -14,8 +17,8 @@ public final class CellReference extends Expression {
 	 * @param position a non null Position
 	 */
 	public CellReference (final Spreadsheet spread, final Position position) {
-		   this.sheet = spread;
-		   this.pos = position;
+		this.sheet = spread;
+		this.pos = position;
 	}
 
 	@Override
