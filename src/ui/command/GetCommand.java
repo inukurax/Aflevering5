@@ -21,14 +21,12 @@ public final class GetCommand extends Command {
 	
 	public void execute() throws NoSuchSpreadsheetException {
 		try {
-			if (!CellReference.isCyclic) {
 			String str = Application.instance.getWorksheet().get(pos).toString();
 			System.out.println(str);
 			String save = String.format("get %s %s", arg1,arg2);
 			SaveFile.saveFile.add(save);
-			}
-			else
-				System.out.println("Cyclic expression");
+		
+			//	System.out.println("Cyclic expression");
 
 		}
 		catch (NullPointerException e) {

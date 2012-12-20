@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class Spreadsheet {
 	
 	private ArrayList<Node> list;
+	private ArrayList<Position> positionList;
+
 	private String name;
 	public static int count;
 	private int hash;
@@ -22,16 +24,17 @@ public class Spreadsheet {
 		name = "Sheet" + count;
 		count++;
 		hash = count;
+		positionList = new ArrayList<Position>();
 	}
 	
 	/**
-	 * Accesor method for getting name
+	 * Accesor method for getting name of spreadsheet
 	 * @return String of name<count>
 	 */
 	public String getName() {
 		return name;
 	}
-	
+	 
 	/**
 	 * Checks for equality by name instead.
 	 */
@@ -42,7 +45,8 @@ public class Spreadsheet {
 	}
 	
 	/**
-	 * Uniq
+	 * Uniq hashCode
+	 * @return hashcode
 	 */
 	public int hashCode() {
 		return hash;
@@ -70,14 +74,17 @@ public class Spreadsheet {
 	 * @param expression is a non null  Expression
 	 */
 	public void set(final Position position, final Expression expression) {
+		
+		
 		int index = listContains(position);
-		if (index != -1)
+		if (index != -1) {
 			list.set(index, new Node(position, expression));
-		else
+			positionList.set(index, position);
+		}
+		else {
 			list.add(new Node (position, expression)); 
-		isSet = position;
-
-			
+			positionList.add(position);
+		}
 	}
 	/**
 	 * @param position is a non null Position
@@ -85,10 +92,14 @@ public class Spreadsheet {
 	 */
 	public Expression get(final Position position) {
 		for (Node node : list) {
-			if (node.getKey().isEqualTo(position)) 
+		 	if (node.getKey().isEqualTo(position)) 
 				return node.getValue();
 		}
 		return null;
+	}
+	
+	public  ArrayList<Position> getPosList() {
+		return positionList;
 	}
 	
 }

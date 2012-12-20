@@ -60,6 +60,7 @@ public final class SetCommand extends Command {
 		Pattern constPattern = Pattern.compile(constRegex);
 
 		Scanner scan = new Scanner(arg);
+		
 		try {
 		switch (expType) { 
 		case "AConst" : if (scan.hasNextInt()) {
@@ -134,18 +135,18 @@ public final class SetCommand extends Command {
 						return new Concat(getExpression(argSplit[0],argSplit[1]),
 							getExpression(argSplit[2],  argSplit[3]));
 						}
-						return null;
+ 						return null;
 						
 		}
 		} catch (Exception e ) {
 			ErrorStream.instance.show("Invalid input: " + e.toString());
-			e.printStackTrace();
 		}
 		scan.close();
 		return null;
 		
 	}
 	
+
 	/**
 	 * method for Concat and Add
 	 * Splits a String of polish notation, 
