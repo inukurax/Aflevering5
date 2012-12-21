@@ -1,13 +1,8 @@
 
 import spreadsheet.NoSuchSpreadsheetException;
-import ui.command.*;
-import java.io.PrintStream;
-import java.io.InputStream;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import ui.CommandInterpreter;
-import ui.command.FailedCommand;
 
 final class Interpreter {
 

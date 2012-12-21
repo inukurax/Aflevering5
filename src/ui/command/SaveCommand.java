@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import spreadsheet.NoSuchSpreadsheetException;
 import ui.ErrorStream;
 import ui.SaveFile;
 
@@ -40,7 +39,6 @@ public final class SaveCommand extends Command {
 			}
 			else
 				System.out.println("Nothing to save!");
-
 		} 
 		catch (IOException e) {
 			ErrorStream.instance.show("There was an error, " + e.toString());
