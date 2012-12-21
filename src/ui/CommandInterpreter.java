@@ -19,7 +19,8 @@ public final class CommandInterpreter {
 	}
 
 	/**
-	 * 
+	 * interpret, takes a scanner and looks for matches to
+	 * these commands:
 	 * pws: prints the current worksheet name; 
 	 * ns: initializes a new spreadsheet;
 	 * ls: list initialized spreadsheets;
@@ -28,6 +29,9 @@ public final class CommandInterpreter {
 	 * position in the current worksheet. 
 	 * get: gets the expression at the given 
 	 * position in the current worksheet
+	 * FailedCommand is issued if non valid command.
+	 * 
+	 * Ignores everything typed in after an correct command.
 	 * 
 	 * @param scanner
 	 * @return the Command equal to the input in console. if no match, writes

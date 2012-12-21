@@ -1,7 +1,5 @@
 package ui.command;
 
-
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
@@ -19,38 +17,44 @@ import ui.SaveFile;
 
 public final class SetCommand extends Command {
 
-	private int argInt1;
-	private int argInt2;
+
 	private String expType;
 	private String arguments;
 	private String fatTest = "";
 	private String[] argSplit;
+	private Position spreadPos;
+	// Regex of constant Expressions.
 	private final static String constRegex ="((AConst)|(LConst)|(TConst))";
+	
 	/**
-	 * @param argInt1
-	 * @param argInt2
-	 * @param type
-	 * @param rest
+	 * 
+	 * @param argInt1 column in Position to set.
+	 * @param argInt2 row in Position to set.
+	 * @param type String of Expression type
+	 * @param rest String of Arguments for type Expression.
 	 */
 	public SetCommand(final int argInt1, final int argInt2, 
 			final String type, final String rest) {
-		this.argInt1 = argInt1;
-		this.argInt2 = argInt2;
+		spreadPos = new Position(argInt1, argInt2);
 		this.expType = type;
 		this.arguments = rest;	
 	}
+	/**
+	 * Set Expression gotten from <expType> and <arguments>
+	 * uses method getExpression.
+	 * if Expression is legal sets in current workshop at <spreadPos>
+	 */
 	@Override
 	public void execute() throws NoSuchSpreadsheetException {
-		Position position = new Position(argInt1, argInt2);
 		Expression expression;
 			expression = getExpression(expType, arguments);
 		if (expression != null) {
 			arguments = arguments.replaceAll(fatTest, "");
-			Application.instance.getWorksheet().set(position, expression);
+			Application.instance.getWorksheet().set(spreadPos, expression);
 			System.out.println(String.format("set new %s(%s) at Position(%d,%d)"
-					, expType, arguments, argInt1, argInt2));
+					, expType, arguments, spreadPos.getColumn(), spreadPos.getRow(),expType));
 			SaveFile.saveFile.add(String.format("set %d %d %s %s"
-					,  argInt1, argInt2,expType, arguments));
+					,  spreadPos.getColumn(), spreadPos.getRow(),expType, arguments));
 		}
 		else {
 			ErrorStream.instance.show("Invalid Expression: " + 
@@ -58,6 +62,12 @@ public final class SetCommand extends Command {
 		}
 	}
 	
+	/**
+	 * Evaluate polish notation to an Expression
+	 * @param expType String of Expression name
+	 * @param arg String of arguments in polish notation
+	 * @return the Expression
+	 */
 	private Expression getExpression(String expType, String arg) {
 		Pattern constPattern = Pattern.compile(constRegex);
 
@@ -95,13 +105,13 @@ public final class SetCommand extends Command {
 							Position pos = new Position(arguInt1, arguInt2);
 							Spreadsheet sheet = Application.instance.
 									getSpreadsheet(sheetName);
-							Position pos2 = new Position(this.argInt1, this.argInt2);
+							
 							if (sheet.get(pos) == null)
 								sheet.getCellList().add(pos);
-								sheet.getPosList().add(pos2);
-								return new CellReference(sheet, pos);
+								sheet.getPosList().add(spreadPos);
+							return new CellReference(sheet, pos);
 							}
-							return null;
+						return null;
 			
 		case "Neg" : if (scan.findInLine(constPattern) != null ) {
 						    MatchResult result = scan.match();
@@ -155,7 +165,7 @@ public final class SetCommand extends Command {
 	
 
 	/**
-	 * method for Concat, Add, Disjunct, Conjunct. = double expressions
+	 * Method for Concat, Add, Disjunct, Conjunct. = double expressions
 	 * Splits a String of polish notation, 
 	 * in to a list of first argument and second.
 	 * This is needed because Concat and Add takes two arguments.

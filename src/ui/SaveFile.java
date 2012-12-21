@@ -2,6 +2,9 @@ package ui;
 
 import java.util.ArrayList;
 
+/**
+ * Class for holding commands that should be saved.
+ */
 public final class SaveFile {
 	
 	/**
