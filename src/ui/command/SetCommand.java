@@ -182,8 +182,8 @@ public final class SetCommand extends Command {
 		int countDuo = 1;
 		final String constRegex ="((AConst)|(LConst)|(TConst))";
 		final String duoRegex ="(Concat)|(Add)|(Disjunct)|(Conjunct)";
-		String newString = "";
-		String newStringName = "";
+		String firstArg = "";
+		String firstExp = "";
 
 		int i;
 		for (i = 0; countDuo > countConst && i < list.length; i++) {
@@ -194,24 +194,24 @@ public final class SetCommand extends Command {
 				countDuo++;
 			}
 			if (i == 0) 
-			newStringName = list[i];	
+			firstExp = list[i];	
 			
 			else
-			newString = newString + list[i] + " ";	
+			firstArg += list[i] + " ";	
 
 		}
-		newString = newString + list[i];
-		String rest = "";
+		firstArg = firstArg + list[i];
+		String secondArg = "";
 		for (i = i+1; i < list.length; i++) {
-			rest = rest + " " + list[i];
+			secondArg += " " + list[i];
 		}
-		rest = rest.replaceFirst(" ", "");
+		secondArg = secondArg.replaceFirst(" ", "");
 
-		String restName = rest.substring(0, rest.indexOf(" "));
-		rest = rest.substring(rest.indexOf(" "), rest.length());
-		rest = rest.replaceFirst(" ", "");
+		String secondExp = secondArg.substring(0, secondArg.indexOf(" "));
+		secondArg = secondArg.substring(secondArg.indexOf(" "), secondArg.length());
+		secondArg = secondArg.replaceFirst(" ", "");
 
-		String[] split = {newStringName, newString ,restName ,rest};
+		String[] split = {firstExp, firstArg ,secondExp ,secondArg};
 		return split;
 	}
 
