@@ -24,7 +24,7 @@ public final class CellReference extends Expression {
 	/**
 	 * @return the boolean Expression which the CellReference refers to.
 	 */
-	public  boolean toBoolean() {
+	public boolean toBoolean() {
 		  return sheet.get(pos).toBoolean();
 	}
 	@Override

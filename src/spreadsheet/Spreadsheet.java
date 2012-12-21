@@ -41,12 +41,14 @@ public class Spreadsheet {
 	}
 	 
 	/**
-	 * Checks for equality by Spreadsheet name.
+	 * Overrides equals method to
+	 * check for equality by Spreadsheet name.
 	 */
-	public boolean equals(Spreadsheet other) {
+	@Override
+	public boolean equals(Object other) {
 		if (other == null)
 			return false;
-		return this.getName().equals(other.getName());
+		return this.getName().equals(((Spreadsheet) other).getName());
 	}
 	
 	/**

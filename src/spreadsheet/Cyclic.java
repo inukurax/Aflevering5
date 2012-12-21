@@ -1,6 +1,7 @@
 package spreadsheet;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Cyclic {
 	
@@ -35,25 +36,10 @@ public class Cyclic {
 	}
 	
 	/**
-	 * Runs through every element in the
-	 * spreadsheets list of Positions with a CellReferences
-	 * and check if it equals any of the elements
-	 * in the spreadsheets list of Position added with a CellReference .
-	 * expressions
-	 * @return true if spreadsheet holds a infinity loop E±xpression.
+	 * Checks for common elements in cellList and positionList
+	 * @return true if spreadsheet holds a infinity loop Expression.
 	 */
 	public boolean isCyclic() {
-	int i = 0;
-	if (this.getCellList().isEmpty() || this.getPosList().isEmpty())
-		return false;
-	while (i  < this.getCellList().size()) {
-		for (Position pos : this.getPosList()) {
-			if (this.getCellList().get(i).isEqualTo(pos))
-				return true;
-		}
-		i++;
+		return !Collections.disjoint(this.cellList,this.positionList);
 	}
-	return false;
-	}
-
 }

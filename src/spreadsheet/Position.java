@@ -10,10 +10,8 @@ public final class Position {
      * @param row is a non negative int
      */
     public Position(final int column, final int row){
-
         this.column = column;
         this.row = row;
-
     }
 
     /**
@@ -42,6 +40,14 @@ public final class Position {
     	if (other == null)
     		return false;
         return (other.getRow() == getRow() && other.getColumn() == getColumn());
+    }
+    
+    /**
+     * Overrides equals to use isEqualTo 
+     */
+    @Override
+    public boolean equals(final Object other) {
+    return this.isEqualTo((Position) other);
     }
 
 }
