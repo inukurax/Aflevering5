@@ -91,7 +91,7 @@ public final class CommandInterpreter {
 						}
 					}
 				return new 
-				FailedCommand("Need argument: \"load filename.ark\"");
+						FailedCommand("Need argument: \"load filename.ark\"");
 		case "exit": return new ExitCommand();
 		}
 

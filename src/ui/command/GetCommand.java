@@ -26,14 +26,14 @@ public final class GetCommand extends Command {
 	  */
 	public void execute() {
 		String save = 
-		String.format("get %s %s", pos.getColumn(), pos.getRow());
+		             String.format("get %s %s", pos.getColumn(), pos.getRow());
 		SaveFile.saveFile.add(save);
 		if (Application.instance.getWorksheet().getCyclic().isCyclic(this.pos))
 			System.out.println("Cyclic expression");
 		else {
 		try {
 			String str = 
-			Application.instance.getWorksheet().get(pos).toString();
+			           Application.instance.getWorksheet().get(pos).toString();
 			System.out.println(str);
 
 
