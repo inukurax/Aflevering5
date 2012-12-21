@@ -107,8 +107,8 @@ public final class SetCommand extends Command {
 									getSpreadsheet(sheetName);
 							
 							if (sheet.get(pos) == null)
-								sheet.getCellList().add(pos);
-								sheet.getPosList().add(spreadPos);
+								sheet.getCyclic().getCellList().add(pos);
+								sheet.getCyclic().getPosList().add(spreadPos);
 							return new CellReference(sheet, pos);
 							}
 						return null;

@@ -27,7 +27,7 @@ public final class GetCommand extends Command {
 	public void execute() throws NoSuchSpreadsheetException {
 		String save = String.format("get %s %s", pos.getColumn(), pos.getRow());
 		SaveFile.saveFile.add(save);
-		if (Application.instance.getWorksheet().isCyclic()) 
+		if (Application.instance.getWorksheet().getCyclic().isCyclic()) 
 			System.out.println("Cyclic expression");
 		else {
 		try {
