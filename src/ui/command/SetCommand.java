@@ -173,7 +173,7 @@ public final class SetCommand extends Command {
 	 * @return should return String[] of length() == 4 
 	 *         index 0 = expression type of argument 1 of double expression
 	 * 		   index 1 = index 0's arguments
-	 * 		   index 2 =  expression type of argument 2 of double expression
+	 * 		   index 2 = expression type of argument 2 of double expression
 	 * 		   index 3 = index 2's arguments
 	 */
 	private static String[] splitTwoArg(String str) {
@@ -181,7 +181,7 @@ public final class SetCommand extends Command {
 		int countConst = 0;
 		int countDuo = 1;
 		final String constRegex ="((AConst)|(LConst)|(TConst))";
-		final String duoRegex ="(Concat)|(Add)";
+		final String duoRegex ="(Concat)|(Add)|(Disjunct)|(Conjunct)";
 		String newString = "";
 		String newStringName = "";
 

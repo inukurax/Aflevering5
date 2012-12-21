@@ -37,7 +37,7 @@ public class Cyclic {
 	
 	/**
 	 * Checks for common elements in cellList and positionList
-	 * and checks that <pos> is an allready used Position
+	 * and checks that <pos> is an already used Position
 	 * @param Position to check if it holds a infinity loop
 	 * @return true if spreadsheet holds a infinity loop Expression.
 	 */
