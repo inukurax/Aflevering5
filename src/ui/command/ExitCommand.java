@@ -7,7 +7,7 @@ public final class ExitCommand
 
   public void execute() {
 	  System.out.println("Terminating application!");
-    Application.instance.exit();
+      Application.instance.exit();
   }
 
 }

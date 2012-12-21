@@ -195,7 +195,6 @@ public final class SetCommand extends Command {
 			}
 			if (i == 0) 
 			firstExp = list[i];	
-			
 			else
 			firstArg += list[i] + " ";	
 

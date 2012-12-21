@@ -16,7 +16,7 @@ public final class ChangeWorksheetCommand extends Command {
 	@Override
 	public void execute() {
 		if (name.isEmpty()) {
-		ErrorStream.instance.show("Please use syntax \"cws Sheet-name\" ");	
+		ErrorStream.instance.show("Please use syntax \"cws Sheet#\" ");	
 			return;
 		}
 

@@ -10,7 +10,7 @@ public final class Application {
   
   private ArrayList<Spreadsheet> spreadsheets;
   private Spreadsheet worksheet;
-  private ArrayList<String> list;
+  private ArrayList<String> nameList;
 
 
   public static final Application instance = new Application();
@@ -19,8 +19,8 @@ public final class Application {
     this.worksheet = new Spreadsheet();
     this.spreadsheets = new ArrayList<Spreadsheet>();
     this.spreadsheets.add(this.worksheet);
-	this.list = new ArrayList<String>();
-	this.list.add(worksheet.getName());
+	this.nameList = new ArrayList<String>();
+	this.nameList.add(worksheet.getName());
   }
 	
 	/**
@@ -38,7 +38,7 @@ public final class Application {
 	public void newSpreadsheet() {
 	    this.spreadsheets.add(new Spreadsheet());
 	    String name = spreadsheets.get(spreadsheets.size() - 1).getName();
-	    this.list.add(name);
+	    this.nameList.add(name);
 	}
 	
 	/**
@@ -75,11 +75,11 @@ public final class Application {
 	}
 	
 	/**
-	 * list of the currently active spreadsheets;
+	 * List of the currently active spreadsheets;
 	 * @return List of Spreadsheet names
 	 */
 	public Iterable<String> listSpreadsheets() {
-		 return list;	
+		 return nameList;	
 	}
 	/**
 	 * exits the application with exit code 0.
@@ -90,7 +90,7 @@ public final class Application {
 	
 	/**
 	 * Gets the last made Spreadsheet
-	 * @return
+	 * @return Spreadsheet
 	 */
 	public Spreadsheet getLast() {
 		int index = spreadsheets.size() - 1;
@@ -104,11 +104,11 @@ public final class Application {
 	 */
 	public void restart() {
 		this.spreadsheets.clear();
-		this.list.clear();
+		this.nameList.clear();
 		Spreadsheet.count = 0;
 		this.worksheet = new Spreadsheet();
 		this.spreadsheets.add(this.worksheet);
-		this.list.add(this.worksheet.getName());
+		this.nameList.add(this.worksheet.getName());
 	}
 
 }
