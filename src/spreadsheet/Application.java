@@ -7,10 +7,10 @@ import java.util.ArrayList;
  * The instance is initialized on first mention of the class.
  */
 public final class Application {
-
+  
   private ArrayList<Spreadsheet> spreadsheets;
   private Spreadsheet worksheet;
-  private ArrayList<String> list;
+  private ArrayList<String> nameList;
 
 
   public static final Application instance = new Application();
@@ -19,12 +19,12 @@ public final class Application {
     this.worksheet = new Spreadsheet();
     this.spreadsheets = new ArrayList<Spreadsheet>();
     this.spreadsheets.add(this.worksheet);
-	this.list = new ArrayList<String>();
-	this.list.add(worksheet.getName());
+	this.nameList = new ArrayList<String>();
+	this.nameList.add(worksheet.getName());
   }
 	
 	/**
-	 * returns the current worksheet;
+	 * Returns the current worksheet;
 	 *  guaranteed to be be not null;
 	 * @return
 	 */
@@ -32,47 +32,41 @@ public final class Application {
 		return worksheet;
 	}
 	/**
-	 *  initializes a new empty spreadsheet; 
+	 *  Initializes a new empty spreadsheet; 
 	 *  the worksheet is retained;
 	 */
 	public void newSpreadsheet() {
 	    this.spreadsheets.add(new Spreadsheet());
 	    String name = spreadsheets.get(spreadsheets.size() - 1).getName();
-	    this.list.add(name);
+	    this.nameList.add(name);
 	}
 	
 	/**
-	 *  changes the worksheet to be the given spreadsheet; 
+	 *  Changes the worksheet to be the given Spreadsheet by name; 
 	 *  throws NoSuchSpreadsheetException 
 	 *  if there is no spreadsheet by the specified name;
-	 * @param name
-	 * @throws NoSuchSpreadsheetException 
+	 * @param name of Spreadsheet
+	 * @throws NoSuchSpreadsheetException if no Spreadsheet by name
+	 * is found
 	 */
 	public void changeWorksheet(final String name) 
 			      throws NoSuchSpreadsheetException {
 		if (worksheet.getName().equals(name))
 			return;
-		
-		for (Spreadsheet sheet : spreadsheets) {
-			if (sheet.getName().equals(name)) {
-				this.worksheet = sheet;
-				return;
-			}
-		}
-		throw new NoSuchSpreadsheetException(name);
+		this.worksheet = this.getSpreadsheet(name);	
 	}
 	
 	/**
-	 * returns a reference to the desired spreadsheet;
+	 * Returns a reference to the desired spreadsheet;
 	 * throws NoSuchSpreadsheetException 
 	 * if there is no spreadsheet by the specified name;
-	 * @param name
-	 * @return
-	 * @throws NoSuchSpreadsheetException 
+	 * @param name of Spreadsheet to get.
+	 * @return the Spreadsheet with name
+	 * @throws NoSuchSpreadsheetException if no Spreadsheet by name
+	 * is found
 	 */
 	public Spreadsheet getSpreadsheet(final String name) 
 						throws NoSuchSpreadsheetException {
-		
 		for (Spreadsheet sheet : spreadsheets) {
 			if (sheet.getName().equals(name))
 				return sheet;
@@ -81,11 +75,11 @@ public final class Application {
 	}
 	
 	/**
-	 * lists the currently active spreadsheets;
-	 * @return
+	 * List of the currently active spreadsheets;
+	 * @return List of Spreadsheet names
 	 */
 	public Iterable<String> listSpreadsheets() {
-		 return list;	
+		 return nameList;	
 	}
 	/**
 	 * exits the application with exit code 0.
@@ -95,21 +89,26 @@ public final class Application {
 	}
 	
 	/**
-	 * Gets the last made spreadsheet
-	 * @return
+	 * Gets the last made Spreadsheet
+	 * @return Spreadsheet
 	 */
 	public Spreadsheet getLast() {
 		int index = spreadsheets.size() - 1;
 		return spreadsheets.get(index);
 	}
 	
-	public void restart() throws NoSuchSpreadsheetException {
+	/**
+	 * Sets Application as it was initializes again.
+	 * also sets count of Spreadsheet class, so name of new Spreadsheet
+	 * will start at Sheet0 and go to Sheet<count++>
+	 */
+	public void restart() {
 		this.spreadsheets.clear();
-		this.list.clear();
+		this.nameList.clear();
 		Spreadsheet.count = 0;
 		this.worksheet = new Spreadsheet();
 		this.spreadsheets.add(this.worksheet);
-		this.list.add(this.worksheet.getName());
+		this.nameList.add(this.worksheet.getName());
 	}
 
 }

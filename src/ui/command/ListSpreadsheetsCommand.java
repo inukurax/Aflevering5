@@ -5,9 +5,9 @@ import spreadsheet.Application;
 public final class ListSpreadsheetsCommand extends Command {
 
 	public void execute() {
-		Iterable<String> list= Application.instance.listSpreadsheets();
+		Iterable<String> nameList = Application.instance.listSpreadsheets();
 
-		for (String str : list) {
+		for (String str : nameList) {
 			System.out.println(str);
 		}
 	}

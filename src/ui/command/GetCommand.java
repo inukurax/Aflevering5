@@ -9,26 +9,38 @@ import ui.SaveFile;
 public final class GetCommand extends Command {
 	
 	private Position pos;
-	private int arg1;
-	private int arg2;
-
+	
+	/**
+	 * Gets the expression at a giving Position.
+	 * @param arg1 column of Position 
+	 * @param arg2 row of Expression
+	 */
 	public GetCommand(int arg1, int arg2) {
 		this.pos = new Position(arg1, arg2);
-		this.arg1 = arg1;
-		this.arg2 = arg2;
 	}
 	
-	public void execute() throws NoSuchSpreadsheetException {
+	 /**
+	  * Gets Expression on a given Position in current Worksheet!
+	  * Return message "Cyclic expression" if it goes in infinity loop.
+	  * catch NullPointerException -> No Expression found on Position.
+	  */
+	public void execute() {
+		String save = String.format("get %s %s", pos.getColumn(), pos.getRow());
+		SaveFile.saveFile.add(save);
+		if (Application.instance.getWorksheet().getCyclic().isCyclic(this.pos)) 
+			System.out.println("Cyclic expression");
+		else {
 		try {
-			
 			String str = Application.instance.getWorksheet().get(pos).toString();
 			System.out.println(str);
-			String save = String.format("get %s %s", arg1,arg2);
-			SaveFile.saveFile.add(save);
+
+
 		}
 		catch (NullPointerException e) {
-			ErrorStream.instance.show(String.format("Null expression at %s %s -> "+ e.toString(), arg1,arg2));
+			ErrorStream.instance.show(String.format("No Expression at %s %s" +
+					" -> "+ e.toString(), pos.getColumn(), pos.getRow()));
 		} 
+		}
 	}
 
 }

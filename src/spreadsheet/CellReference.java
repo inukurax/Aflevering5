@@ -1,4 +1,5 @@
 package spreadsheet;
+
 /**
  * 
  * CellReference extends Expression
@@ -14,15 +15,16 @@ public final class CellReference extends Expression {
 	 * @param position a non null Position
 	 */
 	public CellReference (final Spreadsheet spread, final Position position) {
-		   sheet = spread;
-		   pos = position;
+		this.sheet = spread;
+		this.pos = position;
+
 	}
 
 	@Override
 	/**
 	 * @return the boolean Expression which the CellReference refers to.
 	 */
-	public  boolean toBoolean() {
+	public boolean toBoolean() {
 		  return sheet.get(pos).toBoolean();
 	}
 	@Override
@@ -39,5 +41,6 @@ public final class CellReference extends Expression {
 	public String toString() {
 			return sheet.get(pos).toString();
 	}
+	
 
 }
