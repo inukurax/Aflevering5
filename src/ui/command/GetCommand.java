@@ -24,10 +24,10 @@ public final class GetCommand extends Command {
 	  * Return message "Cyclic expression" if it goes in infinity loop.
 	  * catch NullPointerException -> No Expression found on Position.
 	  */
-	public void execute() throws NoSuchSpreadsheetException {
+	public void execute() {
 		String save = String.format("get %s %s", pos.getColumn(), pos.getRow());
 		SaveFile.saveFile.add(save);
-		if (Application.instance.getWorksheet().getCyclic().isCyclic()) 
+		if (Application.instance.getWorksheet().getCyclic().isCyclic(this.pos)) 
 			System.out.println("Cyclic expression");
 		else {
 		try {

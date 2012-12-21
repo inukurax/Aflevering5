@@ -24,7 +24,7 @@ public class LoadCommand extends Command {
 	}
 
 	@Override
-	public void execute() throws NoSuchSpreadsheetException {
+	public void execute() {
 		try {
 			Application.instance.restart();
 			Scanner scanner = new Scanner(new File(filename));

@@ -1,6 +1,6 @@
 import spreadsheet.ExpressionTest;
 import spreadsheet.PositionTest;
-
+@Deprecated
 class Test {
 
   public static void main(String[] _) {

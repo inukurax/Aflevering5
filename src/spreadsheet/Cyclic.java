@@ -37,9 +37,15 @@ public class Cyclic {
 	
 	/**
 	 * Checks for common elements in cellList and positionList
+	 * and checks that <pos> is an allready used Position
+	 * @param Position to check if it holds a infinity loop
 	 * @return true if spreadsheet holds a infinity loop Expression.
 	 */
-	public boolean isCyclic() {
-		return !Collections.disjoint(this.cellList,this.positionList);
+	public boolean isCyclic(Position pos) {
+		boolean contains = positionList.contains(pos);
+	  return !Collections.disjoint(this.cellList,this.positionList) && contains;
 	}
+
+
+	
 }

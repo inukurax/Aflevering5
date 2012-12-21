@@ -45,7 +45,7 @@ public final class SetCommand extends Command {
 	 * if Expression is legal sets in current workshop at <spreadPos>
 	 */
 	@Override
-	public void execute() throws NoSuchSpreadsheetException {
+	public void execute() {
 		Expression expression;
 			expression = getExpression(expType, arguments);
 		if (expression != null) {
