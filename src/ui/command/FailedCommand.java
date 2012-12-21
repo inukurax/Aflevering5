@@ -1,6 +1,5 @@
 package ui.command;
 
-import spreadsheet.Application;
 import ui.ErrorStream;
 
 public final class FailedCommand
