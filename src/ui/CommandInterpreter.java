@@ -79,7 +79,8 @@ public final class CommandInterpreter {
 								return new SaveCommand(file);
 						}
 					}
-				return new FailedCommand("Need argument: \"save filename.ark\"");
+				return new 
+				FailedCommand("Need argument: \"save filename.ark\"");
 		case "load": if (scanner.hasNext()) {
 						String file = scanner.next();
 						int length = file.length();
@@ -89,7 +90,8 @@ public final class CommandInterpreter {
 								return new LoadCommand(file);
 						}
 					}
-				return new FailedCommand("Need argument: \"load filename.ark\"");
+				return new 
+				FailedCommand("Need argument: \"load filename.ark\"");
 		case "exit": return new ExitCommand();
 		}
 

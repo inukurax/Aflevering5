@@ -7,7 +7,8 @@ public class Cyclic {
 	
 	// Holds Position of CellReference. Only adds entries in SetCommand
 	private ArrayList<Position> positionList;
-	// Holds Position that CellReference points to. Only adds entries in SetCommand 
+	// Holds Position that CellReference points to. 
+	// Only adds entries in SetCommand 
 	private ArrayList<Position> cellList;
 	
 	/**

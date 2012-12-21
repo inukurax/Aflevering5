@@ -25,13 +25,15 @@ public final class GetCommand extends Command {
 	  * catch NullPointerException -> No Expression found on Position.
 	  */
 	public void execute() {
-		String save = String.format("get %s %s", pos.getColumn(), pos.getRow());
+		String save = 
+		String.format("get %s %s", pos.getColumn(), pos.getRow());
 		SaveFile.saveFile.add(save);
-		if (Application.instance.getWorksheet().getCyclic().isCyclic(this.pos)) 
+		if (Application.instance.getWorksheet().getCyclic().isCyclic(this.pos))
 			System.out.println("Cyclic expression");
 		else {
 		try {
-			String str = Application.instance.getWorksheet().get(pos).toString();
+			String str = 
+			Application.instance.getWorksheet().get(pos).toString();
 			System.out.println(str);
 
 
