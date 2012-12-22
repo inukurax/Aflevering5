@@ -8,11 +8,24 @@ import ui.SaveFile;
 public final class ChangeWorksheetCommand extends Command {
 
 	private final String name;
-
+	
 	  /* Assumes that name is not null. */
+	
+	/**
+	 * 
+	 * @param name of Spreadsheet
+	 */
+
 	public ChangeWorksheetCommand (final String name) {
 	    this.name = name;
+	
 	}
+	/**
+	 * Changes Worksheet to the
+	 * spreadsheet with the given name
+	 * if no spreadsheet with given name is found
+	 * it uses exception "NoSuchSpreadsheetException"
+	 */
 	@Override
 	public void execute() {
 		if (name.isEmpty()) {
@@ -26,6 +39,7 @@ public final class ChangeWorksheetCommand extends Command {
 		} catch (NoSuchSpreadsheetException e) {
 			ErrorStream.instance.show(e.toString());
 		}
+	
 	}
 
 }

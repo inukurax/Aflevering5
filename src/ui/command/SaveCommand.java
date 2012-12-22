@@ -14,12 +14,26 @@ public final class SaveCommand extends Command {
 	private BufferedWriter output;
 	private String filename;
 	/**
-	 * Does nothing right now
-	 * @param filename
+	 * 
+	 * @param filename of String
 	 */
 	public SaveCommand(String filename) {
 		this.filename = filename;
 	}
+	
+	/**
+	 * Prints the array saveFile
+	 * to text file, thus saving
+	 * commands used in the session
+	 * @see SaveFile#saveFile saveFile
+	 * 
+	 * if nothing has been done this session
+	 * returns "Nothing to save!"
+	 * 
+	 * catches IOExecption should there be
+	 * and error saving file, returning error message
+
+	 */
 
 	@Override
 	public void execute() {

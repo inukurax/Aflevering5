@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ui.command;
 
 import java.io.File;
@@ -15,7 +12,6 @@ public class LoadCommand extends Command {
 
 	private final String filename;
 	/**
-	 * 
 	 * @param file filename of file in jar directory.
 	 */
 	public LoadCommand(String file) {
@@ -25,6 +21,8 @@ public class LoadCommand extends Command {
 	/**
 	 * Resets the Application and
 	 * uses the CommandInterpreter to scan a file of type file.ark.
+	 * if no file has the given name
+	 * Catches exception returning error to user
 	 */
 	@Override
 	public void execute() {
@@ -44,6 +42,7 @@ public class LoadCommand extends Command {
 			// TODO Auto-generated catch block
 		ErrorStream.instance.show("Error: " + e.toString());
 		}
+	
 		
 		
 	}
