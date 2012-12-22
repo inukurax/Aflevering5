@@ -4,10 +4,6 @@ import java.util.Scanner;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-import spreadsheet.Application;
-import spreadsheet.NoSuchSpreadsheetException;
-import spreadsheet.Position;
-import spreadsheet.Spreadsheet;
 import spreadsheet.arithmetic.*;
 import spreadsheet.logical.*;
 import spreadsheet.textual.*;

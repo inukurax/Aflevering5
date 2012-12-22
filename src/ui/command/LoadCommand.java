@@ -8,21 +8,24 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import spreadsheet.Application;
-import spreadsheet.NoSuchSpreadsheetException;
 import ui.CommandInterpreter;
 import ui.ErrorStream;
 
 public class LoadCommand extends Command {
 
-	
 	private final String filename;
 	/**
-	 * @param file
+	 * 
+	 * @param file filename of file in jar directory.
 	 */
 	public LoadCommand(String file) {
 		this.filename = file;
 	}
-
+	
+	/**
+	 * Resets the Application and
+	 * uses the CommandInterpreter to scan a file of type file.ark.
+	 */
 	@Override
 	public void execute() {
 		try {
