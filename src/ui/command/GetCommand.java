@@ -13,7 +13,7 @@ public final class GetCommand extends Command {
 	/**
 	 * Gets the expression at a giving Position.
 	 * @param arg1 column of Position 
-	 * @param arg2 row of Expression
+	 * @param arg2 row of Position
 	 */
 	public GetCommand(int arg1, int arg2) {
 		this.pos = new Position(arg1, arg2);

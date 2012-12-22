@@ -11,5 +11,8 @@ public final class NewSpreadsheetCommand extends Command {
 		+ Application.instance.getLast().getName());
 		SaveFile.saveFile.add("ns");
 	}
-
+/**
+ * Creates a new Spreadsheet 
+ * Giving it the sequencial name
+ */
 }
