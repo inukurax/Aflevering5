@@ -14,12 +14,16 @@ public final class SaveCommand extends Command {
 	private BufferedWriter output;
 	private String filename;
 	/**
-	 * Does nothing right now
-	 * @param filename
+	 * 
+	 * @param filename of String
 	 */
 	public SaveCommand(String filename) {
 		this.filename = filename;
 	}
+	/**
+	 * gets a String saved for 
+	 * use in execution
+	 */
 
 	@Override
 	public void execute() {
@@ -43,6 +47,17 @@ public final class SaveCommand extends Command {
 		catch (IOException e) {
 			ErrorStream.instance.show("There was an error, " + e.toString());
 		}
+		/**
+		 * Prints the array saveFile
+		 * to text file, thus saving
+		 * commands used in the session
+		 * 
+		 * if nothing has been done this session
+		 * returns "Nothing to save!"
+		 * 
+		 * catches IOExecption should there be
+		 * and error saving file, returning error message
+		 */
 	}
 
 }

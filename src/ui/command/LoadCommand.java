@@ -17,11 +17,15 @@ public class LoadCommand extends Command {
 	
 	private final String filename;
 	/**
-	 * @param file
+	 * @param file of String
 	 */
 	public LoadCommand(String file) {
 		this.filename = file;
 	}
+	/**
+	 * gets String reference to
+	 * a previously saved file
+	 */
 
 	@Override
 	public void execute() {
@@ -41,6 +45,15 @@ public class LoadCommand extends Command {
 			// TODO Auto-generated catch block
 		ErrorStream.instance.show("Error: " + e.toString());
 		}
+		/**
+		 * Scans a text file for commands
+		 * used in a previous session
+		 * and writes each command 
+		 * to program
+		 * 
+		 * if no file has the given name
+		 * Catches exception returning error to user
+		 */
 		
 		
 	}

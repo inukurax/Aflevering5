@@ -9,5 +9,8 @@ public final class ExitCommand
 	  System.out.println("Terminating application!");
       Application.instance.exit();
   }
+  /**
+   * Terminates the program
+   */
 
 }
