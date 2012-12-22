@@ -10,15 +10,17 @@ public final class FailedCommand
    * @param message of String
    */
 
-  /* Assumes that message is not null. */
-  public FailedCommand(final String message) {
-    this.message = message;
- }
   /**
    * used to create string
    * that can be printed to user
    * in case of wrong input
+   *
+   * Assumes that message is not null.
    */
+  public FailedCommand(final String message) {
+    this.message = message;
+ }
+
 
   public void execute() {
     ErrorStream.instance.show(this.message);

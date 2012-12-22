@@ -20,9 +20,19 @@ public final class SaveCommand extends Command {
 	public SaveCommand(String filename) {
 		this.filename = filename;
 	}
+	
 	/**
-	 * gets a String saved for 
-	 * use in execution
+	 * Prints the array saveFile
+	 * to text file, thus saving
+	 * commands used in the session
+	 * @see SaveFile#saveFile saveFile
+	 * 
+	 * if nothing has been done this session
+	 * returns "Nothing to save!"
+	 * 
+	 * catches IOExecption should there be
+	 * and error saving file, returning error message
+
 	 */
 
 	@Override
@@ -47,17 +57,6 @@ public final class SaveCommand extends Command {
 		catch (IOException e) {
 			ErrorStream.instance.show("There was an error, " + e.toString());
 		}
-		/**
-		 * Prints the array saveFile
-		 * to text file, thus saving
-		 * commands used in the session
-		 * 
-		 * if nothing has been done this session
-		 * returns "Nothing to save!"
-		 * 
-		 * catches IOExecption should there be
-		 * and error saving file, returning error message
-		 */
 	}
 
 }
